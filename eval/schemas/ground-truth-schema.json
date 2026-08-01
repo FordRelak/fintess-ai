@@ -1,0 +1,466 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Training Analysis Ground Truth",
+  "description": "Closed evaluation contract for one deterministic training-analysis scenario.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "scenarioId",
+    "requiredObservations",
+    "forbiddenObservations",
+    "hypothesisPolicy",
+    "recommendationPolicy",
+    "requiredLimitations",
+    "claimPolicy"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "scenarioId": {
+      "$ref": "#/$defs/scenarioId"
+    },
+    "requiredObservations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/requiredObservation"
+      }
+    },
+    "forbiddenObservations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/forbiddenObservation"
+      }
+    },
+    "hypothesisPolicy": {
+      "$ref": "#/$defs/hypothesisPolicy"
+    },
+    "recommendationPolicy": {
+      "$ref": "#/$defs/recommendationPolicy"
+    },
+    "requiredLimitations": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/limitationType"
+      }
+    },
+    "claimPolicy": {
+      "$ref": "#/$defs/claimPolicy"
+    }
+  },
+  "$defs": {
+    "scenarioId": {
+      "type": "string",
+      "pattern": "^scenario-[0-9]{3}(?:-[a-z0-9][a-z0-9-]*)?$"
+    },
+    "week": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "weekRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min",
+        "max"
+      ],
+      "properties": {
+        "min": {
+          "$ref": "#/$defs/week"
+        },
+        "max": {
+          "$ref": "#/$defs/week"
+        }
+      }
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "confidenceSet": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/confidence"
+      }
+    },
+    "observationType": {
+      "type": "string",
+      "enum": [
+        "performance_plateau",
+        "performance_progression",
+        "body_weight_trend",
+        "training_consistency",
+        "program_target_deviation"
+      ]
+    },
+    "observationScope": {
+      "type": "string",
+      "enum": [
+        "exercise",
+        "program",
+        "body_weight"
+      ]
+    },
+    "requiredObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "scope",
+        "throughWeek",
+        "confidence"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/observationType"
+        },
+        "scope": {
+          "$ref": "#/$defs/observationScope"
+        },
+        "exerciseId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "onsetWeek": {
+          "$ref": "#/$defs/weekRange"
+        },
+        "throughWeek": {
+          "$ref": "#/$defs/week"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidenceSet"
+        },
+        "requiredEvidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidenceMatcher"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "scope": {
+                "const": "exercise"
+              }
+            },
+            "required": [
+              "scope"
+            ]
+          },
+          "then": {
+            "properties": {
+              "exerciseId": {}
+            },
+            "required": [
+              "exerciseId"
+            ]
+          },
+          "else": {
+            "not": {
+              "properties": {
+                "exerciseId": {}
+              },
+              "required": [
+                "exerciseId"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "forbiddenObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "scope"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/observationType"
+        },
+        "scope": {
+          "$ref": "#/$defs/observationScope"
+        },
+        "exerciseId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "scope": {
+                "const": "exercise"
+              }
+            },
+            "required": [
+              "scope"
+            ]
+          },
+          "then": {
+            "properties": {
+              "exerciseId": {}
+            },
+            "required": [
+              "exerciseId"
+            ]
+          },
+          "else": {
+            "not": {
+              "properties": {
+                "exerciseId": {}
+              },
+              "required": [
+                "exerciseId"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "metric": {
+      "type": "string",
+      "enum": [
+        "maxWeightKg",
+        "totalReps",
+        "volumeKg",
+        "workingSetCount",
+        "effort",
+        "bodyWeightAverageKg",
+        "workoutCount"
+      ]
+    },
+    "trend": {
+      "type": "string",
+      "enum": [
+        "increasing",
+        "decreasing",
+        "stable",
+        "fluctuating",
+        "consistent"
+      ]
+    },
+    "evidenceMatcher": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "metric",
+        "trend"
+      ],
+      "properties": {
+        "metric": {
+          "$ref": "#/$defs/metric"
+        },
+        "trend": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/trend"
+          }
+        }
+      }
+    },
+    "hypothesisType": {
+      "type": "string",
+      "enum": [
+        "exercise_specific_adaptation",
+        "programming_constraint",
+        "fatigue_accumulation",
+        "recovery_constraint",
+        "nutrition_constraint",
+        "technique_constraint",
+        "insufficient_evidence"
+      ]
+    },
+    "hypothesisPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed"
+      ],
+      "properties": {
+        "allowed": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/allowedHypothesis"
+          }
+        }
+      }
+    },
+    "allowedHypothesis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "confidence"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/hypothesisType"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidenceSet"
+        }
+      }
+    },
+    "recommendationType": {
+      "type": "string",
+      "enum": [
+        "adjust_progression",
+        "modify_volume",
+        "modify_intensity",
+        "deload",
+        "substitute_exercise",
+        "maintain_current_plan",
+        "review_recovery",
+        "review_nutrition",
+        "collect_more_data"
+      ]
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "prioritySet": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/priority"
+      }
+    },
+    "recommendationPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "forbidden"
+      ],
+      "properties": {
+        "required": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/recommendationMatcher"
+          }
+        },
+        "forbidden": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/recommendationMatcher"
+          }
+        }
+      }
+    },
+    "recommendationMatcher": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "priorityAnyOf"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/recommendationType"
+        },
+        "typeAnyOf": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/recommendationType"
+          }
+        },
+        "exerciseId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "priorityAnyOf": {
+          "$ref": "#/$defs/prioritySet"
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "type": {}
+          },
+          "required": [
+            "type"
+          ],
+          "not": {
+            "properties": {
+              "typeAnyOf": {}
+            },
+            "required": [
+              "typeAnyOf"
+            ]
+          }
+        },
+        {
+          "properties": {
+            "typeAnyOf": {}
+          },
+          "required": [
+            "typeAnyOf"
+          ],
+          "not": {
+            "properties": {
+              "type": {}
+            },
+            "required": [
+              "type"
+            ]
+          }
+        }
+      ]
+    },
+    "limitationType": {
+      "type": "string",
+      "enum": [
+        "missing_recovery_data",
+        "missing_nutrition_intake_data",
+        "missing_technique_data",
+        "missing_pain_or_injury_data",
+        "measurement_sparsity",
+        "insufficient_history",
+        "other"
+      ]
+    },
+    "claimPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "forbiddenClaims"
+      ],
+      "properties": {
+        "forbiddenClaims": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

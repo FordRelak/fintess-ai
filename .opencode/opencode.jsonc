@@ -1,0 +1,13 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "default_agent": "plan",
+    "share": "disabled",
+    "autoupdate": "notify",
+    "enabled_providers": ["opencode", "openai", "ChatGPT Plus/Pro"],
+    "disabled_providers": ["ozon"],
+    "plugin": [],
+    "provider": {},
+    "mcp": {}
+  }
+  
+  

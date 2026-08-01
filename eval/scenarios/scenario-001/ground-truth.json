@@ -1,0 +1,230 @@
+{
+  "schemaVersion": "1.0",
+  "scenarioId": "scenario-001-local-smith-press-plateau",
+  "requiredObservations": [
+    {
+      "type": "performance_plateau",
+      "scope": "exercise",
+      "exerciseId": "smith-incline-bench-press",
+      "onsetWeek": {
+        "min": 9,
+        "max": 11
+      },
+      "throughWeek": 16,
+      "confidence": [
+        "high"
+      ],
+      "requiredEvidence": [
+        {
+          "metric": "maxWeightKg",
+          "trend": [
+            "stable"
+          ]
+        },
+        {
+          "metric": "totalReps",
+          "trend": [
+            "stable",
+            "fluctuating"
+          ]
+        },
+        {
+          "metric": "workingSetCount",
+          "trend": [
+            "stable"
+          ]
+        },
+        {
+          "metric": "effort",
+          "trend": [
+            "consistent"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "performance_progression",
+      "scope": "exercise",
+      "exerciseId": "chest-supported-row",
+      "throughWeek": 16,
+      "confidence": [
+        "high"
+      ]
+    },
+    {
+      "type": "performance_progression",
+      "scope": "exercise",
+      "exerciseId": "cable-fly",
+      "throughWeek": 16,
+      "confidence": [
+        "high"
+      ]
+    },
+    {
+      "type": "performance_progression",
+      "scope": "exercise",
+      "exerciseId": "pull-up",
+      "throughWeek": 16,
+      "confidence": [
+        "high"
+      ]
+    },
+    {
+      "type": "body_weight_trend",
+      "scope": "body_weight",
+      "onsetWeek": {
+        "min": 1,
+        "max": 2
+      },
+      "throughWeek": 16,
+      "confidence": [
+        "high"
+      ],
+      "requiredEvidence": [
+        {
+          "metric": "bodyWeightAverageKg",
+          "trend": [
+            "increasing"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "training_consistency",
+      "scope": "program",
+      "onsetWeek": {
+        "min": 1,
+        "max": 1
+      },
+      "throughWeek": 16,
+      "confidence": [
+        "high"
+      ],
+      "requiredEvidence": [
+        {
+          "metric": "workoutCount",
+          "trend": [
+            "consistent"
+          ]
+        }
+      ]
+    }
+  ],
+  "forbiddenObservations": [
+    {
+      "type": "performance_plateau",
+      "scope": "program"
+    },
+    {
+      "type": "performance_plateau",
+      "scope": "exercise",
+      "exerciseId": "chest-supported-row"
+    },
+    {
+      "type": "performance_plateau",
+      "scope": "exercise",
+      "exerciseId": "cable-fly"
+    },
+    {
+      "type": "performance_plateau",
+      "scope": "exercise",
+      "exerciseId": "pull-up"
+    }
+  ],
+  "hypothesisPolicy": {
+    "allowed": [
+      {
+        "type": "exercise_specific_adaptation",
+        "confidence": [
+          "low",
+          "medium"
+        ]
+      },
+      {
+        "type": "programming_constraint",
+        "confidence": [
+          "low",
+          "medium"
+        ]
+      },
+      {
+        "type": "fatigue_accumulation",
+        "confidence": [
+          "low"
+        ]
+      },
+      {
+        "type": "recovery_constraint",
+        "confidence": [
+          "low"
+        ]
+      },
+      {
+        "type": "nutrition_constraint",
+        "confidence": [
+          "low"
+        ]
+      },
+      {
+        "type": "technique_constraint",
+        "confidence": [
+          "low"
+        ]
+      },
+      {
+        "type": "insufficient_evidence",
+        "confidence": [
+          "medium",
+          "high"
+        ]
+      }
+    ]
+  },
+  "recommendationPolicy": {
+    "required": [
+      {
+        "exerciseId": "smith-incline-bench-press",
+        "typeAnyOf": [
+          "adjust_progression",
+          "modify_volume",
+          "modify_intensity",
+          "substitute_exercise"
+        ],
+        "priorityAnyOf": [
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "forbidden": [
+      {
+        "type": "deload",
+        "exerciseId": null,
+        "priorityAnyOf": [
+          "high"
+        ]
+      },
+      {
+        "type": "review_nutrition",
+        "priorityAnyOf": [
+          "high"
+        ]
+      }
+    ]
+  },
+  "requiredLimitations": [
+    "missing_recovery_data",
+    "missing_nutrition_intake_data",
+    "missing_technique_data"
+  ],
+  "claimPolicy": {
+    "forbiddenClaims": [
+      "The whole program or all exercises have plateaued.",
+      "A calorie deficit or insufficient surplus is confirmed.",
+      "Fatigue, recovery, nutrition, technique, pain, or injury is a confirmed cause of the plateau.",
+      "Body-weight gain proves that calorie intake, protein intake, or recovery is sufficient.",
+      "Actual rest times between sets are known or changed during the period.",
+      "e1RM changed during the period."
+    ]
+  }
+}
