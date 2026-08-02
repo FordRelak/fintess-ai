@@ -48,7 +48,12 @@
           "git clean *": "deny",
           "rm *": "deny",
           "sudo *": "deny",
-          "chown *": "deny"
+          "chown *": "deny",
+          "openspec *": "allow",
+          "dotnet *": "allow",
+          "ls":"allow",
+          "ls *":"allow",
+          "date *":"allow"
         },
         "external_directory": "deny",
         "task": {
@@ -58,9 +63,14 @@
         },
         "websearch": "allow",
         "webfetch": "ask",
-        "skill": "ask",
+        "skill": {
+          "*": "deny",
+          "openspec-*": "allow",
+          "analyze-training-progress": "ask"
+        },
         "question": "allow",
-        "doom_loop": "ask"
+        "doom_loop": "ask",
+        "todowrite": "allow"
       }
     }
   }
