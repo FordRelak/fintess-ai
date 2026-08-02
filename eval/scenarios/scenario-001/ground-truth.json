@@ -31,7 +31,8 @@
         {
           "metric": "workingSetCount",
           "trend": [
-            "stable"
+            "stable",
+            "consistent"
           ]
         },
         {
@@ -174,6 +175,7 @@
       {
         "type": "insufficient_evidence",
         "confidence": [
+          "low",
           "medium",
           "high"
         ]

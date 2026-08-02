@@ -1,20 +1,9 @@
 schema: spec-driven
 
-# Project context (optional)
-# This is shown to AI when creating artifacts.
-# Add your tech stack, conventions, style guides, domain knowledge, etc.
-# Example:
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
-
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always include a "Non-goals" section
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
+context: |
+  Language: Russian (ru-RU)
+  Write in Russian, but:
+  - Keep technical terms like "API", "REST", "GraphQL" in English
+  - Code examples and file paths remain in English
+  - Keep OpenSpec structural headers exactly in English: "## ADDED Requirements", "## MODIFIED Requirements", "## REMOVED Requirements", "## RENAMED Requirements", "### Requirement:", and "#### Scenario:"
+  - Keep normative keywords required by OpenSpec exactly in English: "SHALL", "MUST", "SHALL NOT", and "MUST NOT"

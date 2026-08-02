@@ -1,19 +1,19 @@
 {
   "schemaVersion": "1.0",
   "scenarioId": "scenario-001-local-smith-press-plateau",
-  "status": "failed",
+  "status": "manual_review",
   "summary": {
     "total": 23,
-    "passed": 15,
-    "failed": 2,
+    "passed": 17,
+    "failed": 0,
     "manualReview": 6
   },
   "checks": [
     {
       "id": "required-observation-01",
       "category": "required_observation",
-      "status": "failed",
-      "message": "Missing required observation: type=performance_plateau, scope=exercise, exerciseId=smith-incline-bench-press."
+      "status": "passed",
+      "message": "Matched required observation with id \u0027obs-smith-incline-bench-press-plateau\u0027."
     },
     {
       "id": "required-observation-02",
@@ -72,8 +72,8 @@
     {
       "id": "hypothesis-policy-01",
       "category": "hypothesis_policy",
-      "status": "failed",
-      "message": "Hypothesis \u0027hyp-smith-plateau-insufficient-evidence\u0027 has forbidden type/confidence combination \u0027insufficient_evidence/low\u0027."
+      "status": "passed",
+      "message": "Hypothesis \u0027hyp-smith-plateau-insufficient-evidence\u0027 is allowed at confidence \u0027low\u0027."
     },
     {
       "id": "required-recommendation-01",
