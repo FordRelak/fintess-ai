@@ -51,16 +51,14 @@
           "chown *": "deny",
           "openspec *": "allow",
           "dotnet *": "allow",
-          "ls":"allow",
-          "ls *":"allow",
-          "date *":"allow"
+          "ls": "allow",
+          "ls *": "allow",
+          "date *": "allow",
+          "mkdir *": "allow",
+          "mv *": "allow"
         },
         "external_directory": "deny",
-        "task": {
-          "*": "deny",
-          "explore": "allow",
-          "scout": "allow"
-        },
+        "task": "allow",
         "websearch": "allow",
         "webfetch": "ask",
         "skill": {
