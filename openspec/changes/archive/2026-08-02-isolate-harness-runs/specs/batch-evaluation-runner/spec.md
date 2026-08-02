@@ -1,8 +1,4 @@
-## Purpose
-
-Изолированный запуск model generation и evaluator для всех scenarios.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Массовый запуск evaluator
 Repository SHALL предоставлять верхнеуровневый file-based C# runner, который при запуске из repository root находит непосредственные каталоги `scenario-*` в `eval/scenarios`, сортирует их ordinal-лексикографически, создаёт изолированный harness run и запускает model generation и `Evaluate.cs` ровно один раз для каждого scenario. Runner SHALL NOT удалять scenario snapshots.
@@ -14,24 +10,20 @@ Repository SHALL предоставлять верхнеуровневый file-
 ### Requirement: Запись стандартных evaluation outputs
 Mass runner SHALL передавать `Evaluate.cs` explicit run-local `--result` и `--output`, поэтому каждый evaluator создаёт `<run-directory>/scenarios/<scenario-id>/evaluation.json` и не использует стандартный output path committed scenario.
 
-#### Scenario: Evaluation output уже существует
-- **WHEN** в исходном scenario отсутствует `evaluation.json`
-- **THEN** run создаёт evaluation output только в своём scenario directory и не добавляет его в source scenario
-
 #### Scenario: Committed evaluation output уже существует
 - **WHEN** в исходном scenario существует `evaluation.json`
 - **THEN** mass runner сохраняет исходный файл без изменений и записывает новый output только в run-local scenario directory
 
 ### Requirement: Post-evaluation и contract проверка
-Mass runner SHALL дожидаться завершения каждого model subprocess и evaluator, SHALL продолжать обработку независимых scenarios после failure и SHALL запускать существующие contract checks для run outputs. Он SHALL читать generated evaluation summary для корректной интерпретации `manual_review` и агрегировать все scenario и contract statuses. Он SHALL запускать contract checks после обработки scenarios.
-
-#### Scenario: Один evaluator возвращает failed
-- **WHEN** запуск model или `Evaluate.cs` для одного scenario завершается с failure
-- **THEN** `RunHarness.cs` продолжает остальные scenarios, сохраняет run и возвращает non-zero
+Mass runner SHALL дожидаться завершения каждого model subprocess и evaluator, SHALL продолжать обработку независимых scenarios после failure и SHALL запускать существующие contract checks для run outputs. Он SHALL читать generated evaluation summary для корректной интерпретации `manual_review` и агрегировать все scenario и contract statuses.
 
 #### Scenario: Evaluation требует только semantic review
 - **WHEN** evaluator возвращает code `3`, а generated `evaluation.json.summary.failed` равен `0`
 - **THEN** mass runner считает automated scenario checks прошедшими
+
+#### Scenario: Один evaluator возвращает failed
+- **WHEN** evaluator возвращает code `2` либо generated summary содержит failed checks
+- **THEN** mass runner продолжает остальные scenarios, сохраняет failed output и учитывает scenario как failure итогового запуска
 
 #### Scenario: Contract check не проходит
 - **WHEN** любой существующий contract check завершается с failure
@@ -42,7 +34,7 @@ Mass runner SHALL завершаться с non-zero, если каталог `e
 
 #### Scenario: Scenarios не найдены
 - **WHEN** `eval/scenarios` не содержит каталогов `scenario-*`
-- **THEN** `RunHarness.cs` сообщает ошибку и завершается с non-zero
+- **THEN** mass runner сообщает ошибку и завершается с non-zero
 
 #### Scenario: Один scenario не создал result
 - **WHEN** model subprocess завершается без run-local `result.json`

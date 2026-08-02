@@ -32,20 +32,18 @@
 | `program.json` | Контекст программы и целевые параметры. |
 | `workouts.json` | Исходные записи тренировок. |
 | `measurements.json` | Исходные измерения веса тела. |
-| `metrics.json` | Нормализованные метрики, созданные из исходных данных. |
+| `metrics.json` | Run-local метрики, созданные из исходных данных. В scenario не хранится. |
 | `result.json` | Один валидный результат анализа. |
 | `ground-truth.json` | Automated acceptance rules. |
-| `evaluation.json` | Snapshot конкретного запуска evaluator. |
+| `evaluation.json` | Run-local результат evaluator. В scenario не хранится. |
 
 ## Verification
 
 ```bash
-dotnet run eval/scripts/Normalize.cs -- --scenario eval/scenarios/scenario-007-program-wide-plateau
-dotnet run eval/scripts/Evaluate.cs -- --scenario eval/scenarios/scenario-007-program-wide-plateau
-dotnet run eval/scripts/EvaluateAll.cs
+dotnet run eval/scripts/RunHarness.cs -- --skill-id analyze-training-progress --skill-path .opencode/skills/analyze-training-progress --model <model-name>
 dotnet run eval/scripts/VerifyAll.cs
 ```
 
 ## Success criteria
 
-Automated checks должны подтвердить три local plateau, один program plateau и evidence каждого упражнения. `EvaluateAll.cs` перезаписывает `evaluation.json` всех scenarios без проверки результатов; `VerifyAll.cs` не перезаписывает committed snapshots. `manual_review` без `failed` checks означает успешную automated validation.
+Automated checks должны подтвердить три local plateau, один program plateau и evidence каждого упражнения. `RunHarness.cs` сохраняет outputs в `.harness-runs/` и не изменяет scenario inputs. `manual_review` без `failed` checks означает успешную automated validation.

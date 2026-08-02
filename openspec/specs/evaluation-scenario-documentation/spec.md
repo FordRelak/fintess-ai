@@ -26,7 +26,7 @@ Repository SHALL содержать `eval/scenarios/scenario-001/README.md`, с�
 - **THEN** он видит назначение каждого scenario-артефакта и команды запуска `Normalize.cs` и `Evaluate.cs`
 
 ### Requirement: Роли evaluation-артефактов разделены
-Документация scenario SHALL определять `ground-truth.json` как источник точных automated acceptance rules, `result.json` как пример валидного ответа, а `evaluation.json` как снимок конкретного запуска. Документация scenario SHALL ссылаться на `eval/result-authoring-guide.md` как общую инструкцию автора `result.json`. Статус `manual_review` SHALL быть описан как допустимый при отсутствии `failed` automated checks.
+Документация scenario SHALL определять `ground-truth.json` как источник точных automated acceptance rules, `result.json` как пример валидного ответа, а run-local `evaluation.json` как результат конкретного запуска. Документация scenario SHALL ссылаться на `eval/result-authoring-guide.md` как общую инструкцию автора `result.json`. Статус `manual_review` SHALL быть описан как допустимый при отсутствии `failed` automated checks.
 
 #### Scenario: Проверка завершилась manual review без failed checks
 - **WHEN** evaluator возвращает `manual_review` и не содержит checks со статусом `failed`
@@ -39,8 +39,8 @@ Repository SHALL документировать scenarios `002`--`008` по об
 - **WHEN** читатель открывает README любого scenario `002`--`008`
 - **THEN** он видит, какую аналитическую границу проверяют fixtures и почему альтернативный вывод запрещён
 
-### Requirement: Общая проверка snapshots
-README template SHALL содержать команду общего runner для проверки всех scenario snapshots и SHALL описывать, что runner не перезаписывает committed fixtures.
+### Requirement: Общая проверка scenarios
+README template SHALL содержать команду общего runner для проверки всех scenarios и SHALL описывать, что generated outputs создаются во временных или run-local paths и не изменяют scenario inputs.
 
 #### Scenario: Contributor проверяет весь suite
 - **WHEN** contributor использует README template для проверки suite

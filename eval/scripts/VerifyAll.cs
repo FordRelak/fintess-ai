@@ -27,10 +27,9 @@ try
             var temporaryEvaluation = Path.Combine(temporaryRoot, scenarioName + "-evaluation.json");
 
             RunDotnet(normalizeScript, scenario, temporaryMetrics);
-            AssertJsonEqual(Path.Combine(scenario, "metrics.json"), temporaryMetrics, scenarioName, "metrics.json");
+            EnsureJson(temporaryMetrics, scenarioName, "metrics.json");
 
             RunDotnet(evaluateScript, scenario, temporaryEvaluation);
-            AssertJsonEqual(Path.Combine(scenario, "evaluation.json"), temporaryEvaluation, scenarioName, "evaluation.json");
 
             var evaluation = JsonNode.Parse(File.ReadAllText(temporaryEvaluation))!.AsObject();
             var failed = evaluation["summary"]!["failed"]!.GetValue<int>();
@@ -84,17 +83,19 @@ static void RunDotnet(string script, string scenario, string output)
     }
 }
 
-static void AssertJsonEqual(string committedPath, string generatedPath, string scenarioName, string artifactName)
+static void EnsureJson(string generatedPath, string scenarioName, string artifactName)
 {
-    if (!File.Exists(committedPath))
+    if (!File.Exists(generatedPath))
     {
-        throw new InvalidOperationException($"{scenarioName}: committed {artifactName} is missing.");
+        throw new InvalidOperationException($"{scenarioName}: generated {artifactName} is missing.");
     }
 
-    var committed = JsonNode.Parse(File.ReadAllText(committedPath));
-    var generated = JsonNode.Parse(File.ReadAllText(generatedPath));
-    if (!JsonNode.DeepEquals(committed, generated))
+    try
     {
-        throw new InvalidOperationException($"{scenarioName}: committed {artifactName} differs from regenerated output.");
+        JsonNode.Parse(File.ReadAllText(generatedPath));
+    }
+    catch (System.Text.Json.JsonException exception)
+    {
+        throw new InvalidOperationException($"{scenarioName}: generated {artifactName} is invalid JSON: {exception.Message}");
     }
 }

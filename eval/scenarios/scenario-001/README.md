@@ -40,26 +40,24 @@
 | `program.json` | План программы, целевые диапазоны повторений, подходов и effort. |
 | `workouts.json` | Исходные записи 16 тренировок. |
 | `measurements.json` | Исходные измерения веса тела. |
-| `metrics.json` | Нормализованные метрики, созданные normalizer из input JSON. |
+| `metrics.json` | Run-local метрики, созданные normalizer из input JSON. В scenario не хранится. |
 | `result.json` | Пример одного валидного ответа анализатора. Не единственный допустимый ответ. |
 | `ground-truth.json` | Источник точных automated acceptance rules и matcher-правил. |
-| `evaluation.json` | Снимок конкретного запуска evaluator для `result.json`. |
+| `evaluation.json` | Run-local результат evaluator для `result.json`. В scenario не хранится. |
 
 ## Verification
 
 Запускать из корня repository:
 
 ```bash
-dotnet run eval/scripts/Normalize.cs -- --scenario eval/scenarios/scenario-001
-dotnet run eval/scripts/Evaluate.cs -- --scenario eval/scenarios/scenario-001
-dotnet run eval/scripts/EvaluateAll.cs
+dotnet run eval/scripts/RunHarness.cs -- --skill-id analyze-training-progress --skill-path .opencode/skills/analyze-training-progress --model <model-name>
 dotnet run eval/scripts/VerifyAll.cs
 ```
 
-Первая команда пересоздаёт `metrics.json` из `program.json`, `workouts.json` и `measurements.json`. Вторая валидирует `result.json` и `ground-truth.json` по schemas, записывает `evaluation.json` и возвращает код `3` для `manual_review`. `EvaluateAll.cs` последовательно перезаписывает `evaluation.json` всех scenarios без проверки результатов. `VerifyAll.cs` пересоздаёт outputs во temporary paths и проверяет committed snapshots.
+`RunHarness.cs` генерирует metrics и evaluation в `.harness-runs/` и не изменяет scenario inputs. `VerifyAll.cs` проверяет эту генерацию во временных путях.
 
 ## Success criteria
 
 Automated checks должны подтвердить локальное плато жима, прогрессию остальных упражнений, тренд веса тела, регулярность тренировок, требуемые ограничения и упражнение-специфичную рекомендацию. Точные условия хранятся только в `ground-truth.json`.
 
-Статус `manual_review` при отсутствии checks со статусом `failed` означает, что automated checks пройдены, а semantic claims требуют ручной проверки. Текущий `evaluation.json` имеет этот статус: 17 passed, 0 failed и 6 manual review checks.
+Статус `manual_review` при отсутствии checks со статусом `failed` означает, что automated checks пройдены, а semantic claims требуют ручной проверки.

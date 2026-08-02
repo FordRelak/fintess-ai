@@ -16,6 +16,19 @@ Fitness AI — экспериментальный проект по создан
 - явно обозначать неопределённость и недостаток данных;
 - проверяться на заранее подготовленных сценариях.
 
+## Harness Runs
+
+Изолированный массовый запуск выполняется через `RunHarness.cs`:
+
+```bash
+dotnet run eval/scripts/RunHarness.cs -- \
+  --skill-id analyze-training-progress \
+  --skill-path .opencode/skills/analyze-training-progress \
+  --model <model-name>
+```
+
+Результаты сохраняются в `.harness-runs/<skill-id>/<run-id>`. Команда не изменяет `eval/scenarios`, сохраняет failed runs для диагностики и возвращает non-zero при failed scenario или contract check.
+
 ## Направление развития
 
 В перспективе Fitness AI должен объединить анализ тренировочной нагрузки, восстановления, питания и состава тела в единый контекст. Рекомендации будут опираться на накопленную историю пользователя и становиться точнее по мере появления новых данных и развития evaluation-процесса.

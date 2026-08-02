@@ -29,20 +29,18 @@
 | `program.json` | План программы и цели упражнения. |
 | `workouts.json` | Исходные записи тренировок. |
 | `measurements.json` | Исходные измерения веса тела. |
-| `metrics.json` | Нормализованные метрики, созданные из исходных данных. |
+| `metrics.json` | Run-local метрики, созданные из исходных данных. В scenario не хранится. |
 | `result.json` | Один валидный результат анализа. |
 | `ground-truth.json` | Automated acceptance rules. |
-| `evaluation.json` | Snapshot конкретного запуска evaluator. |
+| `evaluation.json` | Run-local результат evaluator. В scenario не хранится. |
 
 ## Verification
 
 ```bash
-dotnet run eval/scripts/Normalize.cs -- --scenario eval/scenarios/scenario-004-volume-growth-from-added-sets
-dotnet run eval/scripts/Evaluate.cs -- --scenario eval/scenarios/scenario-004-volume-growth-from-added-sets
-dotnet run eval/scripts/EvaluateAll.cs
+dotnet run eval/scripts/RunHarness.cs -- --skill-id analyze-training-progress --skill-path .opencode/skills/analyze-training-progress --model <model-name>
 dotnet run eval/scripts/VerifyAll.cs
 ```
 
 ## Success criteria
 
-Evaluator требует target deviation и не находит failed checks. `EvaluateAll.cs` перезаписывает `evaluation.json` всех scenarios без проверки результатов; `VerifyAll.cs` не перезаписывает committed snapshots. `manual_review` без failed checks допустим.
+Evaluator требует target deviation и не находит failed checks. `RunHarness.cs` сохраняет outputs в `.harness-runs/` и не изменяет scenario inputs. `manual_review` без failed checks допустим.

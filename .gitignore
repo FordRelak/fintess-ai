@@ -43,6 +43,7 @@ ScaffoldingReadMe.txt
 ~$*
 *~
 CodeCoverage/
+/.harness-runs/
 
 # Node.js dependencies
 node_modules/
