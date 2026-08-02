@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "1.1",
+  "observations": [
+    {
+      "id": "obs-body-weight-short-term-increase",
+      "type": "body_weight_trend",
+      "scope": "body_weight",
+      "onsetWeek": 1,
+      "throughWeek": 2,
+      "confidence": "low",
+      "evidence": [
+        {
+          "metric": "bodyWeightAverageKg",
+          "fromWeek": 1,
+          "throughWeek": 2,
+          "trend": "increasing",
+          "details": "Средняя недельная масса выросла с 75.0 до 75.1 кг."
+        }
+      ],
+      "summary": "За две недели средняя недельная масса увеличилась на 0.1 кг."
+    },
+    {
+      "id": "obs-weekly-training-coverage",
+      "type": "training_consistency",
+      "scope": "program",
+      "onsetWeek": 1,
+      "throughWeek": 2,
+      "confidence": "low",
+      "evidence": [
+        {
+          "metric": "workoutCount",
+          "fromWeek": 1,
+          "throughWeek": 2,
+          "trend": "consistent",
+          "details": "Наблюдается по одной тренировке в каждой из двух последовательных недель."
+        }
+      ],
+      "summary": "Тренировка зафиксирована в каждой из двух последовательных недель."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-cause-insufficient-evidence",
+      "type": "insufficient_evidence",
+      "confidence": "high",
+      "basedOn": [
+        "obs-body-weight-short-term-increase",
+        "obs-weekly-training-coverage"
+      ],
+      "reasoning": "Двух недель и двух выполнений недостаточно, чтобы отделить устойчивую адаптацию от краткосрочных колебаний или установить причину изменения результатов."
+    }
+  ],
+  "recommendations": [
+    {
+      "type": "collect_more_data",
+      "basedOn": [
+        "hyp-cause-insufficient-evidence"
+      ],
+      "priority": "medium",
+      "action": "Продолжить фиксировать результаты упражнения, усилие, рабочие подходы и массу тела ещё несколько последовательных недель перед классификацией прогрессии или плато."
+    }
+  ],
+  "limitations": [
+    {
+      "type": "insufficient_history",
+      "impact": "Две недели и два выполнения не позволяют подтвердить устойчивую прогрессию, плато или decline."
+    },
+    {
+      "type": "measurement_sparsity",
+      "impact": "Масса тела измерялась один раз в неделю, поэтому краткосрочное изменение на 0.1 кг нельзя надёжно отделить от обычных колебаний."
+    },
+    {
+      "type": "missing_recovery_data",
+      "impact": "Нет данных о сне, готовности или восстановлении, поэтому их связь с результатами оценить нельзя."
+    },
+    {
+      "type": "missing_nutrition_intake_data",
+      "impact": "Нет фактических данных о потреблении энергии и белка, поэтому влияние питания оценить нельзя."
+    },
+    {
+      "type": "missing_technique_data",
+      "impact": "Нет данных о качестве выполнения, амплитуде движения или видеозаписи, поэтому влияние техники оценить нельзя."
+    }
+  ]
+}

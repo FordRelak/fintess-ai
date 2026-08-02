@@ -52,9 +52,11 @@
 ```bash
 dotnet run eval/scripts/Normalize.cs -- --scenario eval/scenarios/scenario-001
 dotnet run eval/scripts/Evaluate.cs -- --scenario eval/scenarios/scenario-001
+dotnet run eval/scripts/EvaluateAll.cs
+dotnet run eval/scripts/VerifyAll.cs
 ```
 
-Первая команда пересоздаёт `metrics.json` из `program.json`, `workouts.json` и `measurements.json`. Вторая валидирует `result.json` и `ground-truth.json` по schemas, записывает `evaluation.json` и возвращает код `3` для `manual_review`.
+Первая команда пересоздаёт `metrics.json` из `program.json`, `workouts.json` и `measurements.json`. Вторая валидирует `result.json` и `ground-truth.json` по schemas, записывает `evaluation.json` и возвращает код `3` для `manual_review`. `EvaluateAll.cs` последовательно перезаписывает `evaluation.json` всех scenarios без проверки результатов. `VerifyAll.cs` пересоздаёт outputs во temporary paths и проверяет committed snapshots.
 
 ## Success criteria
 

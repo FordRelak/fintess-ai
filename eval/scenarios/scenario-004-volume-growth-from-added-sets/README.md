@@ -39,9 +39,10 @@
 ```bash
 dotnet run eval/scripts/Normalize.cs -- --scenario eval/scenarios/scenario-004-volume-growth-from-added-sets
 dotnet run eval/scripts/Evaluate.cs -- --scenario eval/scenarios/scenario-004-volume-growth-from-added-sets
+dotnet run eval/scripts/EvaluateAll.cs
 dotnet run eval/scripts/VerifyAll.cs
 ```
 
 ## Success criteria
 
-Evaluator требует target deviation и не находит failed checks. `manual_review` без failed checks допустим; `VerifyAll.cs` не перезаписывает committed snapshots.
+Evaluator требует target deviation и не находит failed checks. `EvaluateAll.cs` перезаписывает `evaluation.json` всех scenarios без проверки результатов; `VerifyAll.cs` не перезаписывает committed snapshots. `manual_review` без failed checks допустим.

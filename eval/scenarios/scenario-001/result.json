@@ -1,0 +1,265 @@
+{
+  "schemaVersion": "1.1",
+  "observations": [
+    {
+      "id": "obs-smith-incline-bench-press-progression",
+      "type": "performance_progression",
+      "scope": "exercise",
+      "exerciseId": "smith-incline-bench-press",
+      "onsetWeek": 1,
+      "throughWeek": 8,
+      "confidence": "high",
+      "evidence": [
+        {
+          "metric": "maxWeightKg",
+          "fromWeek": 1,
+          "throughWeek": 8,
+          "trend": "increasing",
+          "details": "Максимальный вес вырос с 60 до 62.5 кг; до повышения веса totalReps вырос с 24 до 29."
+        },
+        {
+          "metric": "totalReps",
+          "fromWeek": 1,
+          "throughWeek": 8,
+          "trend": "increasing",
+          "details": "TotalReps вырос с 24 до 29 при трех рабочих подходах и сопоставимом effort."
+        },
+        {
+          "metric": "workingSetCount",
+          "fromWeek": 1,
+          "throughWeek": 8,
+          "trend": "consistent",
+          "details": "Каждую неделю выполнено по три рабочих подхода."
+        }
+      ],
+      "summary": "До 9-й недели жим на наклонной скамье в Smith-машине прогрессировал через рост повторений и нагрузки при стабильных трех подходах."
+    },
+    {
+      "id": "obs-smith-incline-bench-press-plateau",
+      "type": "performance_plateau",
+      "scope": "exercise",
+      "exerciseId": "smith-incline-bench-press",
+      "onsetWeek": 9,
+      "throughWeek": 16,
+      "confidence": "high",
+      "evidence": [
+        {
+          "metric": "maxWeightKg",
+          "fromWeek": 9,
+          "throughWeek": 16,
+          "trend": "stable",
+          "details": "Максимальный вес оставался 65 кг во всех восьми последовательных выполнениях."
+        },
+        {
+          "metric": "totalReps",
+          "fromWeek": 9,
+          "throughWeek": 16,
+          "trend": "fluctuating",
+          "details": "TotalReps колебался от 24 до 25 без положительного тренда."
+        },
+        {
+          "metric": "workingSetCount",
+          "fromWeek": 9,
+          "throughWeek": 16,
+          "trend": "consistent",
+          "details": "Во всех выполнениях было по три рабочих подхода."
+        },
+        {
+          "metric": "effort",
+          "fromWeek": 9,
+          "throughWeek": 16,
+          "trend": "consistent",
+          "details": "Структура effort оставалась high, high, maximum."
+        }
+      ],
+      "summary": "После повышения до 65 кг жим на наклонной скамье в Smith-машине имеет устойчивое плато с 9-й по 16-ю неделю."
+    },
+    {
+      "id": "obs-chest-supported-row-progression",
+      "type": "performance_progression",
+      "scope": "exercise",
+      "exerciseId": "chest-supported-row",
+      "onsetWeek": 1,
+      "throughWeek": 16,
+      "confidence": "high",
+      "evidence": [
+        {
+          "metric": "maxWeightKg",
+          "fromWeek": 1,
+          "throughWeek": 16,
+          "trend": "increasing",
+          "details": "Максимальный вес вырос с 50 до 62.5 кг через последовательные повышения нагрузки."
+        },
+        {
+          "metric": "totalReps",
+          "fromWeek": 1,
+          "throughWeek": 16,
+          "trend": "increasing",
+          "details": "TotalReps вырос с 24 до 24 после повышения нагрузки, с промежуточными циклами роста до 28 повторений на каждом весе."
+        },
+        {
+          "metric": "workingSetCount",
+          "fromWeek": 1,
+          "throughWeek": 16,
+          "trend": "consistent",
+          "details": "Каждую неделю выполнено по три рабочих подхода."
+        }
+      ],
+      "summary": "Тяга с опорой на грудь прогрессировала по нагрузке с 50 до 62.5 кг при стабильном числе подходов."
+    },
+    {
+      "id": "obs-cable-fly-progression",
+      "type": "performance_progression",
+      "scope": "exercise",
+      "exerciseId": "cable-fly",
+      "onsetWeek": 1,
+      "throughWeek": 16,
+      "confidence": "high",
+      "evidence": [
+        {
+          "metric": "maxWeightKg",
+          "fromWeek": 1,
+          "throughWeek": 16,
+          "trend": "increasing",
+          "details": "Максимальный вес вырос с 15 до 22.5 кг."
+        },
+        {
+          "metric": "totalReps",
+          "fromWeek": 1,
+          "throughWeek": 16,
+          "trend": "increasing",
+          "details": "TotalReps вырос с 33 до 42 с повторяющимися циклами роста перед повышением веса."
+        },
+        {
+          "metric": "workingSetCount",
+          "fromWeek": 1,
+          "throughWeek": 16,
+          "trend": "consistent",
+          "details": "Каждую неделю выполнено по три рабочих подхода."
+        }
+      ],
+      "summary": "Разведения на блоках устойчиво прогрессировали по нагрузке и повторениям при трех рабочих подходах."
+    },
+    {
+      "id": "obs-pull-up-progression",
+      "type": "performance_progression",
+      "scope": "exercise",
+      "exerciseId": "pull-up",
+      "onsetWeek": 1,
+      "throughWeek": 16,
+      "confidence": "high",
+      "evidence": [
+        {
+          "metric": "totalReps",
+          "fromWeek": 1,
+          "throughWeek": 16,
+          "trend": "increasing",
+          "details": "TotalReps вырос с 18 до 33."
+        },
+        {
+          "metric": "bodyWeightAverageKg",
+          "fromWeek": 1,
+          "throughWeek": 16,
+          "trend": "increasing",
+          "details": "Масса тела на выполнениях выросла с 80.0 до 81.6 кг, одновременно с ростом totalReps."
+        },
+        {
+          "metric": "workingSetCount",
+          "fromWeek": 1,
+          "throughWeek": 16,
+          "trend": "consistent",
+          "details": "Каждую неделю выполнено по три рабочих подхода."
+        }
+      ],
+      "summary": "Подтягивания прогрессировали по повторениям при стабильных трех подходах и растущей массе тела."
+    },
+    {
+      "id": "obs-body-weight-increase",
+      "type": "body_weight_trend",
+      "scope": "body_weight",
+      "onsetWeek": 1,
+      "throughWeek": 16,
+      "confidence": "high",
+      "evidence": [
+        {
+          "metric": "bodyWeightAverageKg",
+          "fromWeek": 1,
+          "throughWeek": 16,
+          "trend": "increasing",
+          "details": "Средняя недельная масса тела выросла с 80.0 до 81.6 кг; измерения присутствуют во всех 16 неделях."
+        }
+      ],
+      "summary": "Средняя недельная масса тела устойчиво увеличивалась на 1.6 кг за 16 недель."
+    },
+    {
+      "id": "obs-training-consistency",
+      "type": "training_consistency",
+      "scope": "program",
+      "onsetWeek": 1,
+      "throughWeek": 16,
+      "confidence": "high",
+      "evidence": [
+        {
+          "metric": "workoutCount",
+          "fromWeek": 1,
+          "throughWeek": 16,
+          "trend": "consistent",
+          "details": "Уникальная тренировка присутствует в каждой из 16 последовательных недель."
+        }
+      ],
+      "summary": "Тренировочная регулярность подтверждена одной уникальной тренировкой в каждой неделе периода."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-smith-plateau-cause-uncertain",
+      "type": "insufficient_evidence",
+      "confidence": "medium",
+      "basedOn": [
+        "obs-smith-incline-bench-press-plateau"
+      ],
+      "reasoning": "Плато жима подтверждено, но metrics.json не содержит данных о восстановлении, питании, технике, боли или структуре отдыха, поэтому причина неразличима."
+    }
+  ],
+  "recommendations": [
+    {
+      "type": "adjust_progression",
+      "exerciseId": "smith-incline-bench-press",
+      "basedOn": [
+        "obs-smith-incline-bench-press-plateau",
+        "hyp-smith-plateau-cause-uncertain"
+      ],
+      "priority": "medium",
+      "action": "Для следующих выполнений жима в Smith-машине измените критерий или шаг прогрессии, сохранив три рабочих подхода и отслеживая повторения и effort до следующего повышения нагрузки."
+    },
+    {
+      "type": "maintain_current_plan",
+      "basedOn": [
+        "obs-chest-supported-row-progression",
+        "obs-cable-fly-progression",
+        "obs-pull-up-progression",
+        "obs-training-consistency"
+      ],
+      "priority": "medium",
+      "action": "Сохраните текущую прогрессию для тяги с опорой на грудь, разведений на блоках и подтягиваний, продолжая фиксировать нагрузку, повторения, подходы и effort."
+    }
+  ],
+  "limitations": [
+    {
+      "type": "missing_recovery_data",
+      "impact": "Нельзя оценить вклад сна, готовности или восстановления в плато жима."
+    },
+    {
+      "type": "missing_nutrition_intake_data",
+      "impact": "Заявленная фаза surplus есть, но фактические энергия и белок не измерены."
+    },
+    {
+      "type": "missing_technique_data",
+      "impact": "Нельзя проверить качество выполнения, амплитуду движения или влияние техники на результаты."
+    },
+    {
+      "type": "missing_pain_or_injury_data",
+      "impact": "Нет данных о боли или травмах, поэтому нельзя оценить их возможное влияние на плато."
+    }
+  ]
+}

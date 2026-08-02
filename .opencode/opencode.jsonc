@@ -64,7 +64,8 @@
         "skill": {
           "*": "deny",
           "openspec-*": "allow",
-          "analyze-training-progress": "ask"
+          "analyze-training-progress": "allow",
+          "analyze-all-training-scenarios": "allow"
         },
         "question": "allow",
         "doom_loop": "ask",

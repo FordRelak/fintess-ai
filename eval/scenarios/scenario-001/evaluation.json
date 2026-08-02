@@ -37,7 +37,7 @@
       "id": "required-observation-05",
       "category": "required_observation",
       "status": "passed",
-      "message": "Matched required observation with id \u0027obs-body-weight-increasing\u0027."
+      "message": "Matched required observation with id \u0027obs-body-weight-increase\u0027."
     },
     {
       "id": "required-observation-06",
@@ -73,7 +73,7 @@
       "id": "hypothesis-policy-01",
       "category": "hypothesis_policy",
       "status": "passed",
-      "message": "Hypothesis \u0027hyp-smith-plateau-insufficient-evidence\u0027 is allowed at confidence \u0027low\u0027."
+      "message": "Hypothesis \u0027hyp-smith-plateau-cause-uncertain\u0027 is allowed at confidence \u0027medium\u0027."
     },
     {
       "id": "required-recommendation-01",

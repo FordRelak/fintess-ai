@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "1.1",
+  "observations": [
+    {
+      "id": "obs-pull-up-plateau",
+      "type": "performance_plateau",
+      "scope": "exercise",
+      "exerciseId": "pull-up",
+      "onsetWeek": 1,
+      "throughWeek": 6,
+      "confidence": "high",
+      "evidence": [
+        {
+          "metric": "totalReps",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "stable",
+          "details": "По 27 повторений на каждом из шести последовательных выполнений."
+        },
+        {
+          "metric": "workingSetCount",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "consistent",
+          "details": "По три рабочих подхода на каждом выполнении."
+        },
+        {
+          "metric": "effort",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "consistent",
+          "details": "Структура усилия неизменна: два подхода high и один maximum."
+        },
+        {
+          "metric": "bodyWeightAverageKg",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "increasing",
+          "details": "Средняя недельная масса выросла с 80.0 до 81.2 кг."
+        }
+      ],
+      "summary": "В подтягиваниях шесть последовательных выполнений без роста повторений: 27 повторений в трех подходах при неизменной структуре усилия, несмотря на рост массы тела."
+    },
+    {
+      "id": "obs-body-weight-increasing",
+      "type": "body_weight_trend",
+      "scope": "body_weight",
+      "onsetWeek": 1,
+      "throughWeek": 6,
+      "confidence": "high",
+      "evidence": [
+        {
+          "metric": "bodyWeightAverageKg",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "increasing",
+          "details": "Средняя недельная масса увеличивалась каждую неделю: с 80.0 до 81.2 кг."
+        }
+      ],
+      "summary": "Средняя недельная масса тела выросла на 1.2 кг за шесть недель."
+    },
+    {
+      "id": "obs-training-consistency",
+      "type": "training_consistency",
+      "scope": "program",
+      "onsetWeek": 1,
+      "throughWeek": 6,
+      "confidence": "high",
+      "evidence": [
+        {
+          "metric": "workoutCount",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "consistent",
+          "details": "По одному уникальному workout ID в каждой из шести последовательных недель."
+        }
+      ],
+      "summary": "Тренировки выполнены регулярно: одно уникальное выполнение подтягиваний каждую неделю в течение шести недель."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-pull-up-cause-uncertain",
+      "type": "insufficient_evidence",
+      "confidence": "high",
+      "basedOn": [
+        "obs-pull-up-plateau"
+      ],
+      "reasoning": "Метрики подтверждают локальное плато, но не содержат данных о восстановлении, питании, технике или других причинах, поэтому причину определить нельзя."
+    }
+  ],
+  "recommendations": [
+    {
+      "type": "adjust_progression",
+      "exerciseId": "pull-up",
+      "basedOn": [
+        "obs-pull-up-plateau",
+        "hyp-pull-up-cause-uncertain"
+      ],
+      "priority": "high",
+      "action": "Для подтягиваний измените критерий прогрессии и отслеживайте его в следующих нескольких выполнениях, сохраняя сопоставимые три рабочих подхода и усилие; не увеличивайте объем всей программы только из-за этого локального плато."
+    }
+  ],
+  "limitations": [
+    {
+      "type": "missing_recovery_data",
+      "impact": "Нет данных о сне, готовности и восстановлении, поэтому их влияние на плато оценить нельзя."
+    },
+    {
+      "type": "missing_nutrition_intake_data",
+      "impact": "Указана только фаза питания maintenance; фактические энергия и белок неизвестны."
+    },
+    {
+      "type": "missing_technique_data",
+      "impact": "Нет данных о качестве выполнения, амплитуде движения или видеозаписи, поэтому технические изменения исключить нельзя."
+    },
+    {
+      "type": "measurement_sparsity",
+      "impact": "Масса тела измерялась один раз в неделю, поэтому недельные средние отражают одиночные измерения."
+    }
+  ]
+}

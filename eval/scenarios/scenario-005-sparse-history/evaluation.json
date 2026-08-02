@@ -3,8 +3,8 @@
   "scenarioId": "scenario-005-sparse-history",
   "status": "manual_review",
   "summary": {
-    "total": 7,
-    "passed": 6,
+    "total": 6,
+    "passed": 5,
     "failed": 0,
     "manualReview": 1
   },
@@ -26,12 +26,6 @@
       "category": "forbidden_observation",
       "status": "passed",
       "message": "Forbidden observation absent: type=performance_decline, scope=exercise, exerciseId=leg-press."
-    },
-    {
-      "id": "hypothesis-policy-01",
-      "category": "hypothesis_policy",
-      "status": "passed",
-      "message": "Hypothesis \u0027hyp-insufficient-evidence\u0027 is allowed at confidence \u0027high\u0027."
     },
     {
       "id": "required-limitation-01",

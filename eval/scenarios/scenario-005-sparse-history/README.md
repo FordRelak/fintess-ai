@@ -39,9 +39,10 @@ Leg press записан четыре раза за 12 недель. Нагру�
 ```bash
 dotnet run eval/scripts/Normalize.cs -- --scenario eval/scenarios/scenario-005-sparse-history
 dotnet run eval/scripts/Evaluate.cs -- --scenario eval/scenarios/scenario-005-sparse-history
+dotnet run eval/scripts/EvaluateAll.cs
 dotnet run eval/scripts/VerifyAll.cs
 ```
 
 ## Success criteria
 
-Evaluator требует оба limitations и не находит failed checks. `manual_review` без failed checks допустим; `VerifyAll.cs` не перезаписывает committed snapshots.
+Evaluator требует оба limitations и не находит failed checks. `EvaluateAll.cs` перезаписывает `evaluation.json` всех scenarios без проверки результатов; `VerifyAll.cs` не перезаписывает committed snapshots. `manual_review` без failed checks допустим.

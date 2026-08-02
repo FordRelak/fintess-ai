@@ -42,9 +42,10 @@
 ```bash
 dotnet run eval/scripts/Normalize.cs -- --scenario eval/scenarios/scenario-008-sustained-performance-decline
 dotnet run eval/scripts/Evaluate.cs -- --scenario eval/scenarios/scenario-008-sustained-performance-decline
+dotnet run eval/scripts/EvaluateAll.cs
 dotnet run eval/scripts/VerifyAll.cs
 ```
 
 ## Success criteria
 
-Automated checks должны требовать `performance_decline` и запрещать plateau и progression для тяги штанги. `manual_review` без `failed` checks означает успешную automated validation; `VerifyAll.cs` не перезаписывает committed snapshots.
+Automated checks должны требовать `performance_decline` и запрещать plateau и progression для тяги штанги. `EvaluateAll.cs` перезаписывает `evaluation.json` всех scenarios без проверки результатов; `VerifyAll.cs` не перезаписывает committed snapshots. `manual_review` без `failed` checks означает успешную automated validation.

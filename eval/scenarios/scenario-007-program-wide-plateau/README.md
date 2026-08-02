@@ -42,9 +42,10 @@
 ```bash
 dotnet run eval/scripts/Normalize.cs -- --scenario eval/scenarios/scenario-007-program-wide-plateau
 dotnet run eval/scripts/Evaluate.cs -- --scenario eval/scenarios/scenario-007-program-wide-plateau
+dotnet run eval/scripts/EvaluateAll.cs
 dotnet run eval/scripts/VerifyAll.cs
 ```
 
 ## Success criteria
 
-Automated checks должны подтвердить три local plateau, один program plateau и evidence каждого упражнения. `manual_review` без `failed` checks означает успешную automated validation; `VerifyAll.cs` не перезаписывает committed snapshots.
+Automated checks должны подтвердить три local plateau, один program plateau и evidence каждого упражнения. `EvaluateAll.cs` перезаписывает `evaluation.json` всех scenarios без проверки результатов; `VerifyAll.cs` не перезаписывает committed snapshots. `manual_review` без `failed` checks означает успешную automated validation.

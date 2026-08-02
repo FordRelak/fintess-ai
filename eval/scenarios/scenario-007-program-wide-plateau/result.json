@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "1.1",
+  "observations": [
+    {
+      "id": "obs-program-wide-plateau",
+      "type": "performance_plateau",
+      "scope": "program",
+      "onsetWeek": 1,
+      "throughWeek": 6,
+      "confidence": "high",
+      "evidence": [
+        {
+          "metric": "maxWeightKg",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "stable",
+          "details": "barbell-squat: 100 кг, barbell-bench-press: 80 кг, barbell-row: 70 кг на каждой неделе.",
+          "exerciseId": "barbell-squat"
+        },
+        {
+          "metric": "totalReps",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "stable",
+          "details": "Все три упражнения сохраняли 23 повторения на каждой неделе.",
+          "exerciseId": "barbell-bench-press"
+        },
+        {
+          "metric": "workingSetCount",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "consistent",
+          "details": "Каждое упражнение выполнялось по 3 рабочих подхода на каждой неделе.",
+          "exerciseId": "barbell-row"
+        },
+        {
+          "metric": "effort",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "consistent",
+          "details": "Структура усилия оставалась одинаковой: два подхода high и один maximum для каждого упражнения.",
+          "exerciseId": "barbell-squat"
+        }
+      ],
+      "summary": "В трёх упражнениях программы шесть последовательных выполнений проходили с неизменными весом, повторениями, объёмом, числом подходов и усилием; общепрограммная прогрессия не наблюдается."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-plateau-cause-uncertain",
+      "type": "insufficient_evidence",
+      "confidence": "high",
+      "basedOn": [
+        "obs-program-wide-plateau"
+      ],
+      "reasoning": "Метрики подтверждают общепрограммное плато, но не содержат данных, позволяющих определить его причину."
+    }
+  ],
+  "recommendations": [
+    {
+      "type": "adjust_progression",
+      "basedOn": [
+        "obs-program-wide-plateau",
+        "hyp-plateau-cause-uncertain"
+      ],
+      "priority": "high",
+      "action": "Пересмотреть критерии и шаг прогрессии для всех трёх упражнений и проверить изменение результата в следующих нескольких выполнениях; не менять другие параметры без новых данных."
+    }
+  ],
+  "limitations": [
+    {
+      "type": "missing_recovery_data",
+      "impact": "Нет данных о сне, готовности или восстановлении, поэтому нельзя оценить их вклад в плато."
+    },
+    {
+      "type": "missing_nutrition_intake_data",
+      "impact": "Нет фактических данных о потреблении энергии и белка, поэтому влияние питания не установлено."
+    },
+    {
+      "type": "missing_technique_data",
+      "impact": "Нет данных о технике, амплитуде движения или видеозаписях, поэтому технические ограничения не оценены."
+    },
+    {
+      "type": "missing_pain_or_injury_data",
+      "impact": "Нет данных о боли или травмах, поэтому их возможное влияние на результат не оценено."
+    },
+    {
+      "type": "measurement_sparsity",
+      "impact": "Масса тела измерялась только один раз в неделю, поэтому тонкие изменения тренда массы не различимы."
+    }
+  ]
+}

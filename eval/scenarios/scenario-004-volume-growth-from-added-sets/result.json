@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "1.1",
+  "observations": [
+    {
+      "id": "obs-cable-fly-added-sets",
+      "type": "program_target_deviation",
+      "scope": "exercise",
+      "exerciseId": "cable-fly",
+      "onsetWeek": 3,
+      "throughWeek": 5,
+      "confidence": "high",
+      "evidence": [
+        {
+          "metric": "workingSetCount",
+          "fromWeek": 1,
+          "throughWeek": 5,
+          "trend": "increasing",
+          "details": "Число рабочих подходов выросло с 2 в неделях 1-2 до 3 в неделях 3-5, тогда как programContext задаёт максимум 2 подхода."
+        },
+        {
+          "metric": "volumeKg",
+          "fromWeek": 1,
+          "throughWeek": 5,
+          "trend": "increasing",
+          "details": "Объём вырос с 400 кг в неделях 1-2 до 600 кг в неделях 3-5 вслед за добавлением подхода."
+        }
+      ],
+      "summary": "В cable-fly три последовательных выполнения содержали 3 рабочих подхода вместо заданного диапазона 2 подхода; рост объёма обусловлен только добавленным подходом."
+    },
+    {
+      "id": "obs-cable-fly-load-reps-stable",
+      "type": "performance_plateau",
+      "scope": "exercise",
+      "exerciseId": "cable-fly",
+      "onsetWeek": 1,
+      "throughWeek": 5,
+      "confidence": "medium",
+      "evidence": [
+        {
+          "metric": "maxWeightKg",
+          "fromWeek": 1,
+          "throughWeek": 5,
+          "trend": "stable",
+          "details": "Максимальный вес составлял 20 кг во всех пяти выполнениях."
+        },
+        {
+          "metric": "totalReps",
+          "fromWeek": 1,
+          "throughWeek": 5,
+          "trend": "fluctuating",
+          "details": "Суммарные повторения составляли 20 в неделях 1-2 и 30 в неделях 3-5 из-за добавления третьего подхода, а не роста повторений в сопоставимых подходах."
+        }
+      ],
+      "summary": "Внешний вес не увеличивался; после изменения числа подходов сопоставимый результат на подход не улучшался."
+    },
+    {
+      "id": "obs-body-weight-stable",
+      "type": "body_weight_trend",
+      "scope": "body_weight",
+      "onsetWeek": 1,
+      "throughWeek": 5,
+      "confidence": "medium",
+      "evidence": [
+        {
+          "metric": "bodyWeightAverageKg",
+          "fromWeek": 1,
+          "throughWeek": 5,
+          "trend": "stable",
+          "details": "Средняя недельная масса изменилась с 78,0 до 78,1 кг."
+        }
+      ],
+      "summary": "Средняя недельная масса тела оставалась практически стабильной за период наблюдения."
+    },
+    {
+      "id": "obs-training-consistency",
+      "type": "training_consistency",
+      "scope": "program",
+      "onsetWeek": 1,
+      "throughWeek": 5,
+      "confidence": "high",
+      "evidence": [
+        {
+          "metric": "workoutCount",
+          "fromWeek": 1,
+          "throughWeek": 5,
+          "trend": "consistent",
+          "details": "Есть по одному уникальному workoutId в каждой из пяти последовательных недель."
+        }
+      ],
+      "summary": "Тренировки присутствуют каждую неделю без пропусков в доступной пятинедельной истории."
+    }
+  ],
+  "hypotheses": [],
+  "recommendations": [
+    {
+      "type": "adjust_progression",
+      "exerciseId": "cable-fly",
+      "basedOn": [
+        "obs-cable-fly-added-sets",
+        "obs-cable-fly-load-reps-stable"
+      ],
+      "priority": "medium",
+      "action": "Зафиксировать число рабочих подходов и применить один заранее определённый критерий прогрессии в следующих выполнениях cable-fly: либо удерживать 2 подхода согласно programContext, либо отдельно обновить целевой максимум подходов перед дальнейшим увеличением объёма."
+    },
+    {
+      "type": "maintain_current_plan",
+      "basedOn": [
+        "obs-training-consistency"
+      ],
+      "priority": "low",
+      "action": "Сохранить текущую регулярность тренировок и не менять другие элементы программы без дополнительных данных."
+    }
+  ],
+  "limitations": [
+    {
+      "type": "missing_recovery_data",
+      "impact": "Нет данных о сне, готовности или восстановлении, поэтому нельзя оценить их вклад в отсутствие роста нагрузки."
+    },
+    {
+      "type": "missing_nutrition_intake_data",
+      "impact": "Указана фаза питания, но нет фактического потребления энергии и белка; влияние питания не определяется."
+    },
+    {
+      "type": "missing_technique_data",
+      "impact": "Нет данных о технике, амплитуде движения или видеозаписи; качество выполнения не проверяется."
+    },
+    {
+      "type": "measurement_sparsity",
+      "impact": "Масса тела измерялась один раз в неделю, поэтому небольшое изменение 0,1 кг нельзя интерпретировать как точный краткосрочный тренд."
+    },
+    {
+      "type": "insufficient_history",
+      "impact": "Пять выполнений недостаточны для надёжного вывода о долгосрочной прогрессии или причине стабильной нагрузки после изменения объёма."
+    }
+  ]
+}

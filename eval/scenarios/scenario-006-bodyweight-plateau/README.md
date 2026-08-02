@@ -42,9 +42,10 @@
 ```bash
 dotnet run eval/scripts/Normalize.cs -- --scenario eval/scenarios/scenario-006-bodyweight-plateau
 dotnet run eval/scripts/Evaluate.cs -- --scenario eval/scenarios/scenario-006-bodyweight-plateau
+dotnet run eval/scripts/EvaluateAll.cs
 dotnet run eval/scripts/VerifyAll.cs
 ```
 
 ## Success criteria
 
-Automated checks должны подтвердить локальное plateau и targeted recommendation. `manual_review` без `failed` checks означает успешную automated validation; `VerifyAll.cs` не перезаписывает committed snapshots.
+Automated checks должны подтвердить локальное plateau и targeted recommendation. `EvaluateAll.cs` перезаписывает `evaluation.json` всех scenarios без проверки результатов; `VerifyAll.cs` не перезаписывает committed snapshots. `manual_review` без `failed` checks означает успешную automated validation.
