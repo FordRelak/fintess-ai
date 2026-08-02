@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "1.0",
+  "analysisPeriod": {
+    "from": "2026-08-03",
+    "to": "2026-08-16",
+    "weekCount": 2,
+    "weekDefinition": "consecutive_7_day_periods"
+  },
+  "context": {
+    "goal": "hypertrophy",
+    "nutritionPhase": "maintenance",
+    "programId": "short-history-press",
+    "programVersion": "1"
+  },
+  "bodyWeight": {
+    "measurements": [
+      {
+        "date": "2026-08-05",
+        "weightKg": 75.0
+      },
+      {
+        "date": "2026-08-12",
+        "weightKg": 75.1
+      }
+    ],
+    "weekly": [
+      {
+        "week": 1,
+        "averageKg": 75.0,
+        "measurementCount": 1,
+        "changeFromPreviousWeekKg": null
+      },
+      {
+        "week": 2,
+        "averageKg": 75.1,
+        "measurementCount": 1,
+        "changeFromPreviousWeekKg": 0.1
+      }
+    ],
+    "totalChangeKg": 0.1
+  },
+  "exercises": [
+    {
+      "exerciseId": "machine-chest-press",
+      "resistanceMode": "external_load",
+      "programContext": {
+        "workingSets": {
+          "min": 2,
+          "max": 3
+        },
+        "targetReps": {
+          "min": 8,
+          "max": 12
+        },
+        "targetEffort": {
+          "min": "high",
+          "max": "maximum"
+        }
+      },
+      "performances": [
+        {
+          "workoutId": "workout-2026-08-05",
+          "date": "2026-08-05",
+          "week": 1,
+          "workingSets": [
+            {
+              "order": 1,
+              "reps": 10,
+              "effort": "high",
+              "weightKg": 40
+            },
+            {
+              "order": 2,
+              "reps": 9,
+              "effort": "maximum",
+              "weightKg": 40
+            }
+          ],
+          "summary": {
+            "workingSetCount": 2,
+            "totalReps": 19,
+            "volumeKg": 760,
+            "maxWeightKg": 40
+          }
+        },
+        {
+          "workoutId": "workout-2026-08-12",
+          "date": "2026-08-12",
+          "week": 2,
+          "workingSets": [
+            {
+              "order": 1,
+              "reps": 11,
+              "effort": "high",
+              "weightKg": 40
+            },
+            {
+              "order": 2,
+              "reps": 10,
+              "effort": "maximum",
+              "weightKg": 40
+            }
+          ],
+          "summary": {
+            "workingSetCount": 2,
+            "totalReps": 21,
+            "volumeKg": 840,
+            "maxWeightKg": 40
+          }
+        }
+      ]
+    }
+  ]
+}

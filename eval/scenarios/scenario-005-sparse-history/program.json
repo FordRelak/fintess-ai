@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "1.0",
+  "programId": "sparse-history-squat",
+  "version": "1",
+  "period": { "from": "2026-11-02", "to": "2027-01-24" },
+  "goal": "hypertrophy",
+  "nutritionPhase": "maintenance",
+  "days": [
+    { "dayId": "lower", "frequencyPerWeek": 1, "exercises": [ { "order": 1, "exerciseId": "leg-press", "resistanceMode": "external_load", "workingSets": { "min": 3, "max": 3 }, "targetReps": { "min": 8, "max": 12 }, "targetEffort": { "min": "high", "max": "maximum" } } ] }
+  ]
+}

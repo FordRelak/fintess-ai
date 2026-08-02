@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.1",
+  "scenarioId": "scenario-006-bodyweight-plateau",
+  "requiredObservations": [{ "type": "performance_plateau", "scope": "exercise", "exerciseId": "pull-up", "onsetWeek": { "min": 1, "max": 3 }, "throughWeek": 6, "confidence": ["high"], "requiredEvidence": [{ "metric": "totalReps", "trend": ["stable", "fluctuating"] }, { "metric": "workingSetCount", "trend": ["stable", "consistent"] }, { "metric": "effort", "trend": ["consistent"] }] }],
+  "forbiddenObservations": [{ "type": "performance_plateau", "scope": "program" }, { "type": "performance_decline", "scope": "exercise", "exerciseId": "pull-up" }, { "type": "performance_progression", "scope": "exercise", "exerciseId": "pull-up" }],
+  "hypothesisPolicy": { "allowed": [{ "type": "insufficient_evidence", "confidence": ["low", "medium", "high"] }] },
+  "recommendationPolicy": { "required": [{ "exerciseId": "pull-up", "typeAnyOf": ["adjust_progression", "modify_volume", "modify_intensity", "substitute_exercise"], "priorityAnyOf": ["medium", "high"] }], "forbidden": [{ "type": "deload", "exerciseId": null, "priorityAnyOf": ["high"] }] },
+  "requiredLimitations": ["missing_recovery_data", "missing_nutrition_intake_data", "missing_technique_data"],
+  "claimPolicy": { "forbiddenClaims": ["The whole program has plateaued.", "Fatigue, recovery, nutrition, or technique is a confirmed cause of the plateau.", "Body-weight gain proves that recovery or nutrition is sufficient."] }
+}

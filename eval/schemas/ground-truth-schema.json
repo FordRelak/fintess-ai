@@ -16,14 +16,13 @@
   ],
   "properties": {
     "schemaVersion": {
-      "const": "1.0"
+      "const": "1.1"
     },
     "scenarioId": {
       "$ref": "#/$defs/scenarioId"
     },
     "requiredObservations": {
       "type": "array",
-      "minItems": 1,
       "items": {
         "$ref": "#/$defs/requiredObservation"
       }
@@ -97,6 +96,7 @@
       "enum": [
         "performance_plateau",
         "performance_progression",
+        "performance_decline",
         "body_weight_trend",
         "training_consistency",
         "program_target_deviation"
@@ -272,6 +272,10 @@
           "items": {
             "$ref": "#/$defs/trend"
           }
+        },
+        "exerciseId": {
+          "type": "string",
+          "minLength": 1
         }
       }
     },

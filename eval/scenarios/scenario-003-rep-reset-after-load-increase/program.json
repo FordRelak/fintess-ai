@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "1.0",
+  "programId": "double-progression-row",
+  "version": "1",
+  "period": { "from": "2026-09-01", "to": "2026-10-12" },
+  "goal": "hypertrophy",
+  "nutritionPhase": "surplus",
+  "days": [
+    { "dayId": "pull", "frequencyPerWeek": 1, "exercises": [ { "order": 1, "exerciseId": "cable-row", "resistanceMode": "external_load", "workingSets": { "min": 3, "max": 3 }, "targetReps": { "min": 8, "max": 12 }, "targetEffort": { "min": "high", "max": "maximum" } } ] }
+  ]
+}

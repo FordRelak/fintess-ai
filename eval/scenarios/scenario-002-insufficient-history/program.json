@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0",
+  "programId": "short-history-press",
+  "version": "1",
+  "period": { "from": "2026-08-03", "to": "2026-08-16" },
+  "goal": "hypertrophy",
+  "nutritionPhase": "maintenance",
+  "days": [
+    {
+      "dayId": "upper",
+      "frequencyPerWeek": 1,
+      "exercises": [
+        { "order": 1, "exerciseId": "machine-chest-press", "resistanceMode": "external_load", "workingSets": { "min": 2, "max": 3 }, "targetReps": { "min": 8, "max": 12 }, "targetEffort": { "min": "high", "max": "maximum" } }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "1.0",
+  "measurements": [
+    { "date": "2026-09-03", "weightKg": 80.0 }, { "date": "2026-09-10", "weightKg": 80.1 }, { "date": "2026-09-17", "weightKg": 80.2 }, { "date": "2026-09-24", "weightKg": 80.3 }, { "date": "2026-10-01", "weightKg": 80.4 }, { "date": "2026-10-08", "weightKg": 80.5 }
+  ]
+}

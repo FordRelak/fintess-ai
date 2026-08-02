@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0",
+  "programId": "pull-up-priority",
+  "version": "1",
+  "period": { "from": "2026-08-03", "to": "2026-09-13" },
+  "goal": "strength",
+  "nutritionPhase": "maintenance",
+  "days": [
+    {
+      "dayId": "pull",
+      "frequencyPerWeek": 1,
+      "exercises": [
+        {
+          "order": 1,
+          "exerciseId": "pull-up",
+          "resistanceMode": "bodyweight",
+          "workingSets": { "min": 3, "max": 3 },
+          "targetReps": { "min": 6, "max": 12 },
+          "targetEffort": { "min": "high", "max": "maximum" }
+        }
+      ]
+    }
+  ]
+}

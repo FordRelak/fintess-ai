@@ -293,8 +293,10 @@ static JsonObject BuildMetrics(
         {
             firstAverage ??= average;
             lastAverage = average;
-            previousAverage = average;
         }
+
+        // A gap breaks the week-to-week comparison instead of comparing to an older measurement.
+        previousAverage = average;
     }
 
     JsonNode? totalChangeNode = firstAverage.HasValue && lastAverage.HasValue

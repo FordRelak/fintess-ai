@@ -39,8 +39,9 @@
 ```bash
 dotnet run eval/scripts/Normalize.cs -- --scenario eval/scenarios/<scenario-directory>
 dotnet run eval/scripts/Evaluate.cs -- --scenario eval/scenarios/<scenario-directory>
+dotnet run eval/scripts/VerifyAll.cs
 ```
 
 ## Success criteria
 
-<Какие observations, ограничения и действия должны пройти automated checks. `manual_review` без `failed` checks означает, что automated checks пройдены и требуется semantic review.>
+<Какие observations, ограничения и действия должны пройти automated checks. `manual_review` без `failed` checks означает, что automated checks пройдены и требуется semantic review. `VerifyAll.cs` пересоздаёт snapshots во временных путях и не меняет committed fixtures.>

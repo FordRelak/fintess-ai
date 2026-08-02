@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "1.0",
+  "programId": "added-set-volume",
+  "version": "1",
+  "period": { "from": "2026-10-15", "to": "2026-11-18" },
+  "goal": "hypertrophy",
+  "nutritionPhase": "maintenance",
+  "days": [
+    { "dayId": "push", "frequencyPerWeek": 1, "exercises": [ { "order": 1, "exerciseId": "cable-fly", "resistanceMode": "external_load", "workingSets": { "min": 2, "max": 2 }, "targetReps": { "min": 10, "max": 12 }, "targetEffort": { "min": "high", "max": "maximum" } } ] }
+  ]
+}

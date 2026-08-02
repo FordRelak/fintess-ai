@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.1",
+  "scenarioId": "scenario-008-sustained-performance-decline",
+  "requiredObservations": [{ "type": "performance_decline", "scope": "exercise", "exerciseId": "barbell-row", "onsetWeek": { "min": 1, "max": 3 }, "throughWeek": 6, "confidence": ["high"], "requiredEvidence": [{ "metric": "maxWeightKg", "trend": ["stable"] }, { "metric": "totalReps", "trend": ["decreasing"] }] }],
+  "forbiddenObservations": [{ "type": "performance_plateau", "scope": "exercise", "exerciseId": "barbell-row" }, { "type": "performance_progression", "scope": "exercise", "exerciseId": "barbell-row" }],
+  "hypothesisPolicy": { "allowed": [{ "type": "insufficient_evidence", "confidence": ["low", "medium", "high"] }] },
+  "recommendationPolicy": { "required": [{ "exerciseId": "barbell-row", "typeAnyOf": ["adjust_progression", "modify_volume", "modify_intensity", "substitute_exercise"], "priorityAnyOf": ["medium", "high"] }], "forbidden": [{ "type": "deload", "exerciseId": null, "priorityAnyOf": ["high"] }] },
+  "requiredLimitations": ["missing_recovery_data", "missing_nutrition_intake_data", "missing_technique_data"],
+  "claimPolicy": { "forbiddenClaims": ["Fatigue, recovery, nutrition, technique, pain, or injury is a confirmed cause of the decline.", "The decline is caused by an increase in load."] }
+}

@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "1.0",
+  "scenarioId": "scenario-007-program-wide-plateau",
+  "status": "manual_review",
+  "summary": {
+    "total": 11,
+    "passed": 9,
+    "failed": 0,
+    "manualReview": 2
+  },
+  "checks": [
+    {
+      "id": "required-observation-01",
+      "category": "required_observation",
+      "status": "passed",
+      "message": "Matched required observation with id \u0027obs-barbell-squat-plateau\u0027."
+    },
+    {
+      "id": "required-observation-02",
+      "category": "required_observation",
+      "status": "passed",
+      "message": "Matched required observation with id \u0027obs-barbell-bench-press-plateau\u0027."
+    },
+    {
+      "id": "required-observation-03",
+      "category": "required_observation",
+      "status": "passed",
+      "message": "Matched required observation with id \u0027obs-barbell-row-plateau\u0027."
+    },
+    {
+      "id": "required-observation-04",
+      "category": "required_observation",
+      "status": "passed",
+      "message": "Matched required observation with id \u0027obs-program-wide-performance-plateau\u0027."
+    },
+    {
+      "id": "hypothesis-policy-01",
+      "category": "hypothesis_policy",
+      "status": "passed",
+      "message": "Hypothesis \u0027hyp-program-plateau-insufficient-evidence\u0027 is allowed at confidence \u0027low\u0027."
+    },
+    {
+      "id": "required-recommendation-01",
+      "category": "required_recommendation",
+      "status": "passed",
+      "message": "Matched required recommendation \u0027adjust_progression\u0027."
+    },
+    {
+      "id": "required-limitation-01",
+      "category": "required_limitation",
+      "status": "passed",
+      "message": "Required limitation \u0027missing_recovery_data\u0027 is present."
+    },
+    {
+      "id": "required-limitation-02",
+      "category": "required_limitation",
+      "status": "passed",
+      "message": "Required limitation \u0027missing_nutrition_intake_data\u0027 is present."
+    },
+    {
+      "id": "required-limitation-03",
+      "category": "required_limitation",
+      "status": "passed",
+      "message": "Required limitation \u0027missing_technique_data\u0027 is present."
+    },
+    {
+      "id": "forbidden-claim-01",
+      "category": "semantic_claim",
+      "status": "manual_review",
+      "message": "Fatigue, recovery, nutrition, or technique is a confirmed cause of the plateau."
+    },
+    {
+      "id": "forbidden-claim-02",
+      "category": "semantic_claim",
+      "status": "manual_review",
+      "message": "Stable body weight proves that nutrition is sufficient."
+    }
+  ]
+}

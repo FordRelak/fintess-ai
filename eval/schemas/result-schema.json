@@ -13,7 +13,7 @@
   ],
   "properties": {
     "schemaVersion": {
-      "const": "1.0"
+      "const": "1.1"
     },
     "observations": {
       "type": "array",
@@ -83,6 +83,7 @@
           "enum": [
             "performance_plateau",
             "performance_progression",
+            "performance_decline",
             "body_weight_trend",
             "training_consistency",
             "program_target_deviation"
@@ -141,6 +142,47 @@
               "exerciseId"
             ]
           }
+        },
+        {
+          "if": {
+            "properties": {
+              "scope": {
+                "enum": [
+                  "program",
+                  "body_weight"
+                ]
+              }
+            },
+            "required": [
+              "scope"
+            ]
+          },
+          "then": {
+            "not": {
+              "required": [
+                "exerciseId"
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "performance_decline"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "scope": {
+                "const": "exercise"
+              }
+            }
+          }
         }
       ]
     },
@@ -183,6 +225,10 @@
           ]
         },
         "details": {
+          "type": "string",
+          "minLength": 1
+        },
+        "exerciseId": {
           "type": "string",
           "minLength": 1
         }

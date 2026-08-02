@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "1.0",
+  "workouts": [
+    { "workoutId": "workout-2026-08-05", "startedAt": "2026-08-05T19:00:00+03:00", "durationSeconds": 1800, "program": { "programId": "short-history-press", "version": "1", "dayId": "upper" }, "exercises": [ { "order": 1, "exerciseId": "machine-chest-press", "sourceName": "Machine chest press", "sets": [ { "order": 1, "setType": "working", "resistanceMode": "external_load", "weightKg": 40, "reps": 10, "effort": "high" }, { "order": 2, "setType": "working", "resistanceMode": "external_load", "weightKg": 40, "reps": 9, "effort": "maximum" } ] } ] },
+    { "workoutId": "workout-2026-08-12", "startedAt": "2026-08-12T19:00:00+03:00", "durationSeconds": 1800, "program": { "programId": "short-history-press", "version": "1", "dayId": "upper" }, "exercises": [ { "order": 1, "exerciseId": "machine-chest-press", "sourceName": "Machine chest press", "sets": [ { "order": 1, "setType": "working", "resistanceMode": "external_load", "weightKg": 40, "reps": 11, "effort": "high" }, { "order": 2, "setType": "working", "resistanceMode": "external_load", "weightKg": 40, "reps": 10, "effort": "maximum" } ] } ] }
+  ]
+}

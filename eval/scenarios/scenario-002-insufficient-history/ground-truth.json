@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.1",
+  "scenarioId": "scenario-002-insufficient-history",
+  "requiredObservations": [],
+  "forbiddenObservations": [
+    { "type": "performance_progression", "scope": "exercise", "exerciseId": "machine-chest-press" },
+    { "type": "performance_plateau", "scope": "exercise", "exerciseId": "machine-chest-press" },
+    { "type": "performance_decline", "scope": "exercise", "exerciseId": "machine-chest-press" }
+  ],
+  "hypothesisPolicy": { "allowed": [ { "type": "insufficient_evidence", "confidence": [ "low", "medium", "high" ] } ] },
+  "recommendationPolicy": { "required": [], "forbidden": [] },
+  "requiredLimitations": [ "insufficient_history" ],
+  "claimPolicy": { "forbiddenClaims": [ "Two workouts prove a performance trend." ] }
+}

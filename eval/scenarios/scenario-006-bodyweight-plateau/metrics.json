@@ -1,0 +1,266 @@
+{
+  "schemaVersion": "1.0",
+  "analysisPeriod": {
+    "from": "2026-08-03",
+    "to": "2026-09-13",
+    "weekCount": 6,
+    "weekDefinition": "consecutive_7_day_periods"
+  },
+  "context": {
+    "goal": "strength",
+    "nutritionPhase": "maintenance",
+    "programId": "pull-up-priority",
+    "programVersion": "1"
+  },
+  "bodyWeight": {
+    "measurements": [
+      {
+        "date": "2026-08-03",
+        "weightKg": 80.0
+      },
+      {
+        "date": "2026-08-10",
+        "weightKg": 80.2
+      },
+      {
+        "date": "2026-08-17",
+        "weightKg": 80.5
+      },
+      {
+        "date": "2026-08-24",
+        "weightKg": 80.7
+      },
+      {
+        "date": "2026-08-31",
+        "weightKg": 81.0
+      },
+      {
+        "date": "2026-09-07",
+        "weightKg": 81.2
+      }
+    ],
+    "weekly": [
+      {
+        "week": 1,
+        "averageKg": 80.0,
+        "measurementCount": 1,
+        "changeFromPreviousWeekKg": null
+      },
+      {
+        "week": 2,
+        "averageKg": 80.2,
+        "measurementCount": 1,
+        "changeFromPreviousWeekKg": 0.2
+      },
+      {
+        "week": 3,
+        "averageKg": 80.5,
+        "measurementCount": 1,
+        "changeFromPreviousWeekKg": 0.3
+      },
+      {
+        "week": 4,
+        "averageKg": 80.7,
+        "measurementCount": 1,
+        "changeFromPreviousWeekKg": 0.2
+      },
+      {
+        "week": 5,
+        "averageKg": 81.0,
+        "measurementCount": 1,
+        "changeFromPreviousWeekKg": 0.3
+      },
+      {
+        "week": 6,
+        "averageKg": 81.2,
+        "measurementCount": 1,
+        "changeFromPreviousWeekKg": 0.2
+      }
+    ],
+    "totalChangeKg": 1.2
+  },
+  "exercises": [
+    {
+      "exerciseId": "pull-up",
+      "resistanceMode": "bodyweight",
+      "programContext": {
+        "workingSets": {
+          "min": 3,
+          "max": 3
+        },
+        "targetReps": {
+          "min": 6,
+          "max": 12
+        },
+        "targetEffort": {
+          "min": "high",
+          "max": "maximum"
+        }
+      },
+      "performances": [
+        {
+          "workoutId": "workout-2026-08-03",
+          "date": "2026-08-03",
+          "week": 1,
+          "workingSets": [
+            {
+              "order": 1,
+              "reps": 10,
+              "effort": "high"
+            },
+            {
+              "order": 2,
+              "reps": 9,
+              "effort": "high"
+            },
+            {
+              "order": 3,
+              "reps": 8,
+              "effort": "maximum"
+            }
+          ],
+          "bodyWeightKg": 80.0,
+          "summary": {
+            "workingSetCount": 3,
+            "totalReps": 27
+          }
+        },
+        {
+          "workoutId": "workout-2026-08-10",
+          "date": "2026-08-10",
+          "week": 2,
+          "workingSets": [
+            {
+              "order": 1,
+              "reps": 10,
+              "effort": "high"
+            },
+            {
+              "order": 2,
+              "reps": 9,
+              "effort": "high"
+            },
+            {
+              "order": 3,
+              "reps": 8,
+              "effort": "maximum"
+            }
+          ],
+          "bodyWeightKg": 80.2,
+          "summary": {
+            "workingSetCount": 3,
+            "totalReps": 27
+          }
+        },
+        {
+          "workoutId": "workout-2026-08-17",
+          "date": "2026-08-17",
+          "week": 3,
+          "workingSets": [
+            {
+              "order": 1,
+              "reps": 10,
+              "effort": "high"
+            },
+            {
+              "order": 2,
+              "reps": 9,
+              "effort": "high"
+            },
+            {
+              "order": 3,
+              "reps": 8,
+              "effort": "maximum"
+            }
+          ],
+          "bodyWeightKg": 80.5,
+          "summary": {
+            "workingSetCount": 3,
+            "totalReps": 27
+          }
+        },
+        {
+          "workoutId": "workout-2026-08-24",
+          "date": "2026-08-24",
+          "week": 4,
+          "workingSets": [
+            {
+              "order": 1,
+              "reps": 10,
+              "effort": "high"
+            },
+            {
+              "order": 2,
+              "reps": 9,
+              "effort": "high"
+            },
+            {
+              "order": 3,
+              "reps": 8,
+              "effort": "maximum"
+            }
+          ],
+          "bodyWeightKg": 80.7,
+          "summary": {
+            "workingSetCount": 3,
+            "totalReps": 27
+          }
+        },
+        {
+          "workoutId": "workout-2026-08-31",
+          "date": "2026-08-31",
+          "week": 5,
+          "workingSets": [
+            {
+              "order": 1,
+              "reps": 10,
+              "effort": "high"
+            },
+            {
+              "order": 2,
+              "reps": 9,
+              "effort": "high"
+            },
+            {
+              "order": 3,
+              "reps": 8,
+              "effort": "maximum"
+            }
+          ],
+          "bodyWeightKg": 81.0,
+          "summary": {
+            "workingSetCount": 3,
+            "totalReps": 27
+          }
+        },
+        {
+          "workoutId": "workout-2026-09-07",
+          "date": "2026-09-07",
+          "week": 6,
+          "workingSets": [
+            {
+              "order": 1,
+              "reps": 10,
+              "effort": "high"
+            },
+            {
+              "order": 2,
+              "reps": 9,
+              "effort": "high"
+            },
+            {
+              "order": 3,
+              "reps": 8,
+              "effort": "maximum"
+            }
+          ],
+          "bodyWeightKg": 81.2,
+          "summary": {
+            "workingSetCount": 3,
+            "totalReps": 27
+          }
+        }
+      ]
+    }
+  ]
+}

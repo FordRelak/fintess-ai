@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "1.1",
+  "scenarioId": "scenario-003-rep-reset-after-load-increase",
+  "requiredObservations": [
+    { "type": "performance_progression", "scope": "exercise", "exerciseId": "cable-row", "onsetWeek": { "min": 1, "max": 2 }, "throughWeek": 6, "confidence": [ "high" ], "requiredEvidence": [ { "metric": "maxWeightKg", "trend": [ "increasing" ] } ] }
+  ],
+  "forbiddenObservations": [ { "type": "performance_plateau", "scope": "exercise", "exerciseId": "cable-row" }, { "type": "performance_decline", "scope": "exercise", "exerciseId": "cable-row" } ],
+  "hypothesisPolicy": { "allowed": [] },
+  "recommendationPolicy": { "required": [], "forbidden": [] },
+  "requiredLimitations": [],
+  "claimPolicy": { "forbiddenClaims": [ "The rep reset after a load increase proves decline or plateau." ] }
+}

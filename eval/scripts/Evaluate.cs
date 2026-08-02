@@ -57,6 +57,7 @@ try
     var groundTruth = Deserialize<GroundTruth>(groundTruthNode, "ground-truth.json", jsonOptions);
 
     ValidateResultReferences(result);
+    ValidateGroundTruth(groundTruth);
     var evaluation = Evaluate(result, groundTruth);
 
     var outputDirectory = Path.GetDirectoryName(outputPath);
@@ -175,11 +176,17 @@ static void ValidateResultReferences(AnalysisResult result)
             $"Duplicate observation id '{observation.Id}'.");
         Ensure(observation.OnsetWeek <= observation.ThroughWeek,
             $"Observation '{observation.Id}' has onsetWeek after throughWeek.");
+        Ensure(observation.Scope == "exercise" || observation.ExerciseId is null,
+            $"Observation '{observation.Id}' has exerciseId outside exercise scope.");
 
         foreach (var evidence in observation.Evidence)
         {
             Ensure(evidence.FromWeek <= evidence.ThroughWeek,
                 $"Observation '{observation.Id}' contains evidence with fromWeek after throughWeek.");
+            Ensure(evidence.FromWeek >= observation.OnsetWeek && evidence.ThroughWeek <= observation.ThroughWeek,
+                $"Observation '{observation.Id}' contains evidence outside its observation interval.");
+            Ensure(observation.Scope == "program" || evidence.ExerciseId is null,
+                $"Observation '{observation.Id}' has exercise-specific evidence outside program scope.");
         }
     }
 
@@ -206,15 +213,47 @@ static void ValidateResultReferences(AnalysisResult result)
     }
 }
 
+static void ValidateGroundTruth(GroundTruth groundTruth)
+{
+    foreach (var observation in groundTruth.RequiredObservations)
+    {
+        Ensure(observation.Scope == "exercise" || observation.ExerciseId is null,
+            "Ground truth required observation has exerciseId outside exercise scope.");
+        if (observation.OnsetWeek is not null)
+        {
+            Ensure(observation.OnsetWeek.Min <= observation.OnsetWeek.Max,
+                "Ground truth required observation has an invalid onsetWeek range.");
+        }
+
+        foreach (var evidence in observation.RequiredEvidence)
+        {
+            Ensure(observation.Scope == "program" || evidence.ExerciseId is null,
+                "Ground truth evidence matcher has exerciseId outside program scope.");
+        }
+    }
+
+    foreach (var observation in groundTruth.ForbiddenObservations)
+    {
+        Ensure(observation.Scope == "exercise" || observation.ExerciseId is null,
+            "Ground truth forbidden observation has exerciseId outside exercise scope.");
+    }
+}
+
 static JsonObject Evaluate(AnalysisResult result, GroundTruth groundTruth)
 {
     var checks = new JsonArray();
+    var matchedObservationIds = new HashSet<string>(StringComparer.Ordinal);
 
     for (var index = 0; index < groundTruth.RequiredObservations.Count; index++)
     {
         var expected = groundTruth.RequiredObservations[index];
         var match = result.Observations.FirstOrDefault(actual =>
-            MatchesRequiredObservation(actual, expected));
+            !matchedObservationIds.Contains(actual.Id)
+            && MatchesRequiredObservation(actual, expected));
+        if (match is not null)
+        {
+            matchedObservationIds.Add(match.Id);
+        }
 
         AddCheck(
             checks,
@@ -367,7 +406,8 @@ static bool MatchesRequiredObservation(Observation actual, RequiredObservation e
     return expected.RequiredEvidence.All(required =>
         actual.Evidence.Any(evidence =>
             evidence.Metric == required.Metric
-            && required.Trend.Contains(evidence.Trend)));
+            && required.Trend.Contains(evidence.Trend)
+            && (required.ExerciseId is null || evidence.ExerciseId == required.ExerciseId)));
 }
 
 static bool MatchesForbiddenObservation(Observation actual, ForbiddenObservation forbidden)
@@ -843,6 +883,7 @@ sealed class Evidence
     public required int ThroughWeek { get; init; }
     public required string Trend { get; init; }
     public string? Details { get; init; }
+    public string? ExerciseId { get; init; }
 }
 
 sealed class Hypothesis
@@ -909,6 +950,7 @@ sealed class EvidenceMatcher
 {
     public required string Metric { get; init; }
     public required List<string> Trend { get; init; }
+    public string? ExerciseId { get; init; }
 }
 
 sealed class HypothesisPolicy

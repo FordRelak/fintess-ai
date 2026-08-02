@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "1.1",
+  "scenarioId": "scenario-004-volume-growth-from-added-sets",
+  "requiredObservations": [
+    { "type": "program_target_deviation", "scope": "exercise", "exerciseId": "cable-fly", "onsetWeek": { "min": 3, "max": 3 }, "throughWeek": 5, "confidence": [ "high" ], "requiredEvidence": [ { "metric": "workingSetCount", "trend": [ "stable", "consistent" ] }, { "metric": "volumeKg", "trend": [ "stable" ] } ] }
+  ],
+  "forbiddenObservations": [ { "type": "performance_progression", "scope": "exercise", "exerciseId": "cable-fly" } ],
+  "hypothesisPolicy": { "allowed": [ { "type": "programming_constraint", "confidence": [ "low", "medium" ] }, { "type": "insufficient_evidence", "confidence": [ "low", "medium", "high" ] } ] },
+  "recommendationPolicy": { "required": [ { "type": "modify_volume", "exerciseId": "cable-fly", "priorityAnyOf": [ "medium", "high" ] } ], "forbidden": [] },
+  "requiredLimitations": [],
+  "claimPolicy": { "forbiddenClaims": [ "Volume growth from added sets proves performance progression." ] }
+}

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0",
+  "programId": "full-body-plateau",
+  "version": "1",
+  "period": { "from": "2026-08-03", "to": "2026-09-13" },
+  "goal": "hypertrophy",
+  "nutritionPhase": "maintenance",
+  "days": [{ "dayId": "full-body", "frequencyPerWeek": 1, "exercises": [
+    { "order": 1, "exerciseId": "barbell-squat", "resistanceMode": "external_load", "workingSets": { "min": 3, "max": 3 }, "targetReps": { "min": 6, "max": 10 }, "targetEffort": { "min": "high", "max": "maximum" } },
+    { "order": 2, "exerciseId": "barbell-bench-press", "resistanceMode": "external_load", "workingSets": { "min": 3, "max": 3 }, "targetReps": { "min": 6, "max": 10 }, "targetEffort": { "min": "high", "max": "maximum" } },
+    { "order": 3, "exerciseId": "barbell-row", "resistanceMode": "external_load", "workingSets": { "min": 3, "max": 3 }, "targetReps": { "min": 6, "max": 10 }, "targetEffort": { "min": "high", "max": "maximum" } }
+  ] }]
+}

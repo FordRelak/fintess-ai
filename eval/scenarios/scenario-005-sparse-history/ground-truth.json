@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.1",
+  "scenarioId": "scenario-005-sparse-history",
+  "requiredObservations": [],
+  "forbiddenObservations": [
+    { "type": "performance_progression", "scope": "exercise", "exerciseId": "leg-press" },
+    { "type": "performance_plateau", "scope": "exercise", "exerciseId": "leg-press" },
+    { "type": "performance_decline", "scope": "exercise", "exerciseId": "leg-press" }
+  ],
+  "hypothesisPolicy": { "allowed": [ { "type": "insufficient_evidence", "confidence": [ "low", "medium", "high" ] } ] },
+  "recommendationPolicy": { "required": [], "forbidden": [] },
+  "requiredLimitations": [ "insufficient_history", "measurement_sparsity" ],
+  "claimPolicy": { "forbiddenClaims": [ "Sparse workouts prove a sustained performance trend." ] }
+}

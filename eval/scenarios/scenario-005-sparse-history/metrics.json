@@ -1,0 +1,256 @@
+{
+  "schemaVersion": "1.0",
+  "analysisPeriod": {
+    "from": "2026-11-02",
+    "to": "2027-01-24",
+    "weekCount": 12,
+    "weekDefinition": "consecutive_7_day_periods"
+  },
+  "context": {
+    "goal": "hypertrophy",
+    "nutritionPhase": "maintenance",
+    "programId": "sparse-history-squat",
+    "programVersion": "1"
+  },
+  "bodyWeight": {
+    "measurements": [
+      {
+        "date": "2026-11-02",
+        "weightKg": 82.0
+      },
+      {
+        "date": "2026-11-30",
+        "weightKg": 82.2
+      },
+      {
+        "date": "2026-12-28",
+        "weightKg": 82.1
+      },
+      {
+        "date": "2027-01-19",
+        "weightKg": 82.3
+      }
+    ],
+    "weekly": [
+      {
+        "week": 1,
+        "averageKg": 82.0,
+        "measurementCount": 1,
+        "changeFromPreviousWeekKg": null
+      },
+      {
+        "week": 2,
+        "averageKg": null,
+        "measurementCount": 0,
+        "changeFromPreviousWeekKg": null
+      },
+      {
+        "week": 3,
+        "averageKg": null,
+        "measurementCount": 0,
+        "changeFromPreviousWeekKg": null
+      },
+      {
+        "week": 4,
+        "averageKg": null,
+        "measurementCount": 0,
+        "changeFromPreviousWeekKg": null
+      },
+      {
+        "week": 5,
+        "averageKg": 82.2,
+        "measurementCount": 1,
+        "changeFromPreviousWeekKg": null
+      },
+      {
+        "week": 6,
+        "averageKg": null,
+        "measurementCount": 0,
+        "changeFromPreviousWeekKg": null
+      },
+      {
+        "week": 7,
+        "averageKg": null,
+        "measurementCount": 0,
+        "changeFromPreviousWeekKg": null
+      },
+      {
+        "week": 8,
+        "averageKg": null,
+        "measurementCount": 0,
+        "changeFromPreviousWeekKg": null
+      },
+      {
+        "week": 9,
+        "averageKg": 82.1,
+        "measurementCount": 1,
+        "changeFromPreviousWeekKg": null
+      },
+      {
+        "week": 10,
+        "averageKg": null,
+        "measurementCount": 0,
+        "changeFromPreviousWeekKg": null
+      },
+      {
+        "week": 11,
+        "averageKg": null,
+        "measurementCount": 0,
+        "changeFromPreviousWeekKg": null
+      },
+      {
+        "week": 12,
+        "averageKg": 82.3,
+        "measurementCount": 1,
+        "changeFromPreviousWeekKg": null
+      }
+    ],
+    "totalChangeKg": 0.3
+  },
+  "exercises": [
+    {
+      "exerciseId": "leg-press",
+      "resistanceMode": "external_load",
+      "programContext": {
+        "workingSets": {
+          "min": 3,
+          "max": 3
+        },
+        "targetReps": {
+          "min": 8,
+          "max": 12
+        },
+        "targetEffort": {
+          "min": "high",
+          "max": "maximum"
+        }
+      },
+      "performances": [
+        {
+          "workoutId": "workout-2026-11-02",
+          "date": "2026-11-02",
+          "week": 1,
+          "workingSets": [
+            {
+              "order": 1,
+              "reps": 10,
+              "effort": "high",
+              "weightKg": 100
+            },
+            {
+              "order": 2,
+              "reps": 10,
+              "effort": "high",
+              "weightKg": 100
+            },
+            {
+              "order": 3,
+              "reps": 9,
+              "effort": "maximum",
+              "weightKg": 100
+            }
+          ],
+          "summary": {
+            "workingSetCount": 3,
+            "totalReps": 29,
+            "volumeKg": 2900,
+            "maxWeightKg": 100
+          }
+        },
+        {
+          "workoutId": "workout-2026-11-30",
+          "date": "2026-11-30",
+          "week": 5,
+          "workingSets": [
+            {
+              "order": 1,
+              "reps": 9,
+              "effort": "high",
+              "weightKg": 105
+            },
+            {
+              "order": 2,
+              "reps": 9,
+              "effort": "high",
+              "weightKg": 105
+            },
+            {
+              "order": 3,
+              "reps": 8,
+              "effort": "maximum",
+              "weightKg": 105
+            }
+          ],
+          "summary": {
+            "workingSetCount": 3,
+            "totalReps": 26,
+            "volumeKg": 2730,
+            "maxWeightKg": 105
+          }
+        },
+        {
+          "workoutId": "workout-2026-12-28",
+          "date": "2026-12-28",
+          "week": 9,
+          "workingSets": [
+            {
+              "order": 1,
+              "reps": 10,
+              "effort": "high",
+              "weightKg": 105
+            },
+            {
+              "order": 2,
+              "reps": 9,
+              "effort": "high",
+              "weightKg": 105
+            },
+            {
+              "order": 3,
+              "reps": 9,
+              "effort": "maximum",
+              "weightKg": 105
+            }
+          ],
+          "summary": {
+            "workingSetCount": 3,
+            "totalReps": 28,
+            "volumeKg": 2940,
+            "maxWeightKg": 105
+          }
+        },
+        {
+          "workoutId": "workout-2027-01-19",
+          "date": "2027-01-19",
+          "week": 12,
+          "workingSets": [
+            {
+              "order": 1,
+              "reps": 8,
+              "effort": "high",
+              "weightKg": 110
+            },
+            {
+              "order": 2,
+              "reps": 8,
+              "effort": "high",
+              "weightKg": 110
+            },
+            {
+              "order": 3,
+              "reps": 8,
+              "effort": "maximum",
+              "weightKg": 110
+            }
+          ],
+          "summary": {
+            "workingSetCount": 3,
+            "totalReps": 24,
+            "volumeKg": 2640,
+            "maxWeightKg": 110
+          }
+        }
+      ]
+    }
+  ]
+}
