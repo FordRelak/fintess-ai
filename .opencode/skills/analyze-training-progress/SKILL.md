@@ -1,106 +1,106 @@
 ---
 name: analyze-training-progress
-description: Analyze normalized resistance-training metrics and produce a structured result.json that separates observed exercise progression or plateaus from causal hypotheses, recommendations, and data limitations. Use when Codex is given a metrics.json containing weekly body-weight and exercise-performance history, or is asked to assess training progress, detect local versus program-wide plateaus, or generate output compatible with the bundled training-analysis result schema.
+description: Анализирует нормализованные метрики силовых тренировок и создает структурированный result.json, отделяя наблюдаемую прогрессию или плато в упражнениях от гипотез о причинах, рекомендаций и ограничений данных. Используйте, когда Codex получает metrics.json с еженедельной историей массы тела и результатов упражнений, когда требуется оценить тренировочный прогресс, выявить локальное или общепрограммное плато либо создать результат, совместимый с прилагаемой схемой анализа тренировок.
 ---
 
-# Analyze Training Progress
+# Анализ тренировочного прогресса
 
-Analyze normalized training history without turning correlation or program intent into proven causality. Produce `result.json` that conforms exactly to [references/result-schema.json](references/result-schema.json).
+Анализируйте нормализованную историю тренировок, не выдавая корреляцию или замысел программы за доказанную причинно-следственную связь. Создайте `result.json`, в точности соответствующий [references/result-schema.json](references/result-schema.json).
 
-## Inputs and boundaries
+## Входные данные и границы анализа
 
-1. Resolve exactly one `metrics.json`. Ask the user to identify it only when multiple candidates remain ambiguous.
-2. Read the entire input and the bundled result schema before analyzing.
-3. Use only `metrics.json` as evidence. Do not inspect `ground-truth.json`, `evaluation.json`, an existing `result.json`, or other expected-answer artifacts, even when they are in the same directory.
-4. Treat `context.goal`, `context.nutritionPhase`, and exercise `programContext` as declared intent, not proof that nutrition, recovery, rest times, or technique matched the plan.
-5. Do not estimate e1RM unless the input explicitly provides it and the schema supports it. The current schema does not.
+1. Найдите ровно один `metrics.json`. Просите пользователя указать нужный файл, только если несколько найденных вариантов невозможно однозначно различить.
+2. Перед анализом полностью прочитайте входной файл и прилагаемую схему результата.
+3. Используйте в качестве доказательств только `metrics.json`. Не просматривайте `ground-truth.json`, `evaluation.json`, существующий `result.json` и другие артефакты с ожидаемыми ответами, даже если они находятся в том же каталоге.
+4. Считайте `context.goal`, `context.nutritionPhase` и `programContext` упражнений заявленными намерениями, а не доказательством того, что питание, восстановление, время отдыха или техника соответствовали плану.
+5. Не оценивайте e1RM, если входные данные не содержат его явно и схема его не поддерживает. Текущая схема его не поддерживает.
 
-Require enough history to distinguish a sustained pattern from short-term noise. When history is insufficient, avoid a plateau/progression claim and record `insufficient_history`.
+Требуйте достаточную историю, чтобы отличить устойчивую закономерность от краткосрочного шума. Если истории недостаточно, не делайте вывод о плато или прогрессии и укажите `insufficient_history`.
 
-## Analysis workflow
+## Процесс анализа
 
-### 1. Inspect data quality
+### 1. Проверьте качество данных
 
-- Sort exercise performances by `week`, then `date`.
-- Check week coverage, missing performances, duplicate weeks, changes in working-set count, and missing effort or load fields.
-- Use `resistanceMode` to select comparable metrics:
-  - `external_load`: compare `maxWeightKg`, `totalReps`, and `volumeKg` while accounting for set count and effort.
-  - `bodyweight`: compare `totalReps`, set count, effort, and `bodyWeightKg`; increasing repetitions while body weight is stable or rising is progression.
-- Prefer weekly body-weight averages over isolated measurements.
-- Treat `volumeKg` as supporting evidence, not a standalone proof of progression when set count or effort changed.
+- Отсортируйте результаты упражнений сначала по `week`, затем по `date`.
+- Проверьте охват недель, отсутствующие результаты, дублирующиеся недели, изменения числа рабочих подходов и отсутствующие поля усилия или нагрузки.
+- Используйте `resistanceMode` для выбора сопоставимых метрик:
+  - `external_load`: сравнивайте `maxWeightKg`, `totalReps` и `volumeKg`, учитывая число подходов и усилие.
+  - `bodyweight`: сравнивайте `totalReps`, число подходов, усилие и `bodyWeightKg`; рост числа повторений при стабильной или растущей массе тела означает прогрессию.
+- Предпочитайте среднюю недельную массу тела отдельным измерениям.
+- Считайте `volumeKg` вспомогательным доказательством, а не самостоятельным подтверждением прогрессии, если изменились число подходов или усилие.
 
-### 2. Classify each exercise
+### 2. Классифицируйте каждое упражнение
 
-Identify meaningful progression when at least one comparable performance dimension improves and the change is sustained rather than immediately reversed. Typical signals include:
+Определяйте значимую прогрессию, когда улучшается хотя бы один сопоставимый показатель результата и улучшение сохраняется, а не сразу исчезает. Типичные признаки:
 
-- higher external load at comparable repetitions, working-set count, and effort;
-- more repetitions at the same load with comparable sets and effort;
-- repeated double-progression cycles where repetition gains are followed by load increases;
-- for bodyweight work, more repetitions at stable or higher body weight.
+- больший внешний вес при сопоставимых числе повторений, числе рабочих подходов и усилии;
+- больше повторений с тем же весом при сопоставимых подходах и усилии;
+- повторяющиеся циклы двойной прогрессии, в которых за ростом числа повторений следует увеличение веса;
+- для упражнений с собственным весом — больше повторений при стабильной или большей массе тела.
 
-Identify a performance plateau only when all of the following hold:
+Определяйте плато результата, только когда выполнены все следующие условия:
 
-- at least four consecutive recent exposures form a sustained non-improving block;
-- load or the relevant resistance measure does not increase;
-- repetitions and volume show no positive trend beyond small fluctuations;
-- working-set count and effort remain comparable;
-- the pattern is not merely the expected repetition reset immediately after a load increase.
+- не менее четырех последних последовательных выполнений образуют устойчивый блок без улучшений;
+- вес или соответствующий показатель сопротивления не увеличивается;
+- повторения и объем не показывают положительного тренда, выходящего за пределы небольших колебаний;
+- число рабочих подходов и усилие остаются сопоставимыми;
+- закономерность не является ожидаемым снижением числа повторений сразу после увеличения веса.
 
-Set `onsetWeek` to the first week of the sustained non-improving block after the last meaningful improvement. Set `throughWeek` to the last observed week supporting the claim.
+Установите `onsetWeek` равным первой неделе устойчивого блока без улучшений после последнего значимого улучшения. Установите `throughWeek` равным последней наблюдаемой неделе, подтверждающей вывод.
 
-Do not emit overlapping plateau and progression observations for the same exercise and interval. Prefer the classification that describes the current sustained trend. Emit `program_target_deviation` only when observed sets, reps, or effort meaningfully and repeatedly deviate from `programContext`.
+Не создавайте пересекающиеся наблюдения о плато и прогрессии для одного упражнения и интервала. Предпочитайте классификацию, описывающую текущий устойчивый тренд. Создавайте `program_target_deviation`, только когда наблюдаемые подходы, повторения или усилие существенно и неоднократно отклоняются от `programContext`.
 
-### 3. Determine scope
+### 3. Определите область действия
 
-- Use `scope: exercise` for exercise-specific progression or plateau and include the exact `exerciseId`.
-- Use `scope: body_weight` for a trend in weekly average body weight.
-- Use `scope: program` for training consistency or a genuinely program-wide pattern.
-- Do not infer a program-wide plateau when other exercises continue to progress.
-- Derive training consistency from unique workout IDs and week coverage. Do not equate regular attendance with adequate recovery.
+- Используйте `scope: exercise` для прогрессии или плато конкретного упражнения и укажите точный `exerciseId`.
+- Используйте `scope: body_weight` для тренда средней недельной массы тела.
+- Используйте `scope: program` для регулярности тренировок или действительно общепрограммной закономерности.
+- Не делайте вывод об общепрограммном плато, если другие упражнения продолжают прогрессировать.
+- Определяйте регулярность тренировок по уникальным ID тренировок и охвату недель. Не приравнивайте регулярное посещение к достаточному восстановлению.
 
-### 4. Separate facts from explanations
+### 4. Отделите факты от объяснений
 
-Place only directly supported patterns in `observations`. Use `high` confidence only when the relevant history is complete and the trend is unambiguous.
+Помещайте в `observations` только закономерности, напрямую подтвержденные данными. Используйте уверенность `high`, только когда соответствующая история полна и тренд однозначен.
 
-Place possible explanations in `hypotheses`:
+Помещайте возможные объяснения в `hypotheses`:
 
-- link every hypothesis to existing observation IDs through `basedOn`;
-- use `low` confidence for recovery, nutrition, fatigue, technique, pain, or injury explanations when their direct data is absent;
-- use at most `medium` confidence for plausible exercise-specific adaptation or programming constraints unless the input directly tests the explanation;
-- use `insufficient_evidence` when the data supports the observed outcome but cannot distinguish its cause.
+- связывайте каждую гипотезу с существующими ID наблюдений через `basedOn`;
+- используйте уверенность `low` для объяснений, связанных с восстановлением, питанием, усталостью, техникой, болью или травмой, если прямые данные о них отсутствуют;
+- используйте уверенность не выше `medium` для правдоподобной адаптации к конкретному упражнению или ограничений программы, если входные данные не проверяют объяснение напрямую;
+- используйте `insufficient_evidence`, когда данные подтверждают наблюдаемый результат, но не позволяют определить его причину.
 
-Never state a causal hypothesis as confirmed merely because it is plausible.
+Никогда не объявляйте причинную гипотезу подтвержденной лишь потому, что она правдоподобна.
 
-### 5. Recommend the smallest justified change
+### 5. Рекомендуйте минимальное обоснованное изменение
 
-- Link every recommendation to existing observation or hypothesis IDs.
-- For a local plateau, target that exercise first. Prefer `adjust_progression`, `modify_volume`, `modify_intensity`, or `substitute_exercise` according to the evidence.
-- Do not prescribe a program-wide deload solely from one exercise plateau.
-- Do not prioritize `review_nutrition` from a declared `surplus` phase or body-weight trend alone.
-- Preserve exercises that are progressing unless there is separate evidence to change them.
-- Make `action` concrete enough to test over the next few exposures, but do not invent unavailable load, recovery, nutrition, technique, or rest-time facts.
+- Связывайте каждую рекомендацию с существующими ID наблюдений или гипотез.
+- При локальном плато сначала работайте с этим упражнением. В зависимости от доказательств предпочитайте `adjust_progression`, `modify_volume`, `modify_intensity` или `substitute_exercise`.
+- Не назначайте разгрузочную неделю для всей программы только из-за плато в одном упражнении.
+- Не отдавайте приоритет `review_nutrition` только на основании заявленной фазы `surplus` или тренда массы тела.
+- Сохраняйте прогрессирующие упражнения, если нет отдельных доказательств необходимости их изменить.
+- Формулируйте `action` достаточно конкретно, чтобы проверить его в течение нескольких следующих выполнений, но не выдумывайте отсутствующие сведения о весе, восстановлении, питании, технике или времени отдыха.
 
-### 6. Record limitations
+### 6. Зафиксируйте ограничения
 
-Add a limitation only when the corresponding data is absent or too sparse. In particular:
+Добавляйте ограничение, только когда соответствующие данные отсутствуют или слишком редки. В частности:
 
-- add `missing_recovery_data` when sleep, readiness, or recovery measures are absent;
-- add `missing_nutrition_intake_data` when actual energy and protein intake are absent, even if `nutritionPhase` is present;
-- add `missing_technique_data` when execution quality, range of motion, or video evidence is absent;
-- add `missing_pain_or_injury_data` only when its absence materially affects the analysis;
-- add `measurement_sparsity` or `insufficient_history` when applicable.
+- добавьте `missing_recovery_data`, если отсутствуют данные о сне, готовности или восстановлении;
+- добавьте `missing_nutrition_intake_data`, если отсутствуют фактические данные о потреблении энергии и белка, даже при наличии `nutritionPhase`;
+- добавьте `missing_technique_data`, если отсутствуют данные о качестве выполнения, амплитуде движения или видеозаписи;
+- добавьте `missing_pain_or_injury_data`, только если отсутствие этих данных существенно влияет на анализ;
+- добавьте `measurement_sparsity` или `insufficient_history`, когда это применимо.
 
-Describe only how the missing data limits the conclusion. Do not use a limitation as an implied diagnosis.
+Описывайте только то, как отсутствующие данные ограничивают вывод. Не используйте ограничение как подразумеваемый диагноз.
 
-## Output contract
+## Контракт результата
 
-1. Produce one JSON object with exactly these top-level fields: `schemaVersion`, `observations`, `hypotheses`, `recommendations`, and `limitations`.
-2. Use `schemaVersion: "1.0"` and only enum values defined by the bundled schema.
-3. Use unique, stable IDs matching `obs-*` and `hyp-*`. Prefer semantic IDs such as `obs-smith-press-plateau` over positional IDs.
-4. Ensure every `basedOn` reference resolves to an ID in the same result.
-5. Keep evidence intervals within the parent observation interval and ensure `fromWeek <= throughWeek`.
-6. Include no unknown properties and no Markdown inside the JSON.
-7. Validate the result against [references/result-schema.json](references/result-schema.json). Also check cross-reference integrity, which JSON Schema alone does not enforce.
-8. Write `result.json` next to the local input. If the input is not writable or is not local, create a downloadable `result.json` artifact.
+1. Создайте один JSON-объект ровно с этими полями верхнего уровня: `schemaVersion`, `observations`, `hypotheses`, `recommendations` и `limitations`.
+2. Используйте `schemaVersion: "1.0"` и только enum-значения, определенные в прилагаемой схеме.
+3. Используйте уникальные стабильные ID, соответствующие `obs-*` и `hyp-*`. Предпочитайте смысловые ID, например `obs-smith-press-plateau`, вместо позиционных.
+4. Убедитесь, что каждая ссылка `basedOn` указывает на ID в том же результате.
+5. Удерживайте интервалы доказательств в пределах интервала родительского наблюдения и обеспечьте `fromWeek <= throughWeek`.
+6. Не добавляйте неизвестные свойства и Markdown внутри JSON.
+7. Проверьте результат по [references/result-schema.json](references/result-schema.json). Также проверьте целостность перекрестных ссылок, которую сам JSON Schema не обеспечивает.
+8. Запишите `result.json` рядом с локальным входным файлом. Если входной файл недоступен для записи или не является локальным, создайте доступный для скачивания артефакт `result.json`.
 
-Use the user's language for `summary`, `reasoning`, `action`, and `impact`. Keep enum values and IDs in English as defined by the schema.
+Используйте язык пользователя для `summary`, `reasoning`, `action` и `impact`. Сохраняйте enum-значения и ID на английском согласно схеме.
