@@ -22,6 +22,8 @@
 
 ## Files
 
+Общие правила создания `result.json` описаны в [Result Authoring Guide](../result-authoring-guide.md).
+
 | File | Role |
 | --- | --- |
 | `program.json` | Контекст программы и целевые параметры упражнений. |

@@ -33,6 +33,8 @@
 
 ## Files
 
+Общие правила создания `result.json` описаны в [Result Authoring Guide](../../result-authoring-guide.md).
+
 | File | Role |
 | --- | --- |
 | `program.json` | План программы, целевые диапазоны повторений, подходов и effort. |
