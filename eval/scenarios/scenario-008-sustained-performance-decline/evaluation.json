@@ -31,13 +31,13 @@
       "id": "hypothesis-policy-01",
       "category": "hypothesis_policy",
       "status": "passed",
-      "message": "Hypothesis \u0027hyp-insufficient-evidence-for-decline-cause\u0027 is allowed at confidence \u0027high\u0027."
+      "message": "Hypothesis \u0027hyp-barbell-row-decline-cause-uncertain\u0027 is allowed at confidence \u0027high\u0027."
     },
     {
       "id": "required-recommendation-01",
       "category": "required_recommendation",
       "status": "passed",
-      "message": "Matched required recommendation \u0027adjust_progression\u0027."
+      "message": "Matched required recommendation \u0027modify_intensity\u0027."
     },
     {
       "id": "forbidden-recommendation-01",

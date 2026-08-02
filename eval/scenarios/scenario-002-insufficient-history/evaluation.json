@@ -31,7 +31,7 @@
       "id": "hypothesis-policy-01",
       "category": "hypothesis_policy",
       "status": "passed",
-      "message": "Hypothesis \u0027hyp-insufficient-performance-evidence\u0027 is allowed at confidence \u0027high\u0027."
+      "message": "Hypothesis \u0027hyp-cause-insufficient-evidence\u0027 is allowed at confidence \u0027high\u0027."
     },
     {
       "id": "required-limitation-01",

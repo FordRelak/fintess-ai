@@ -93,6 +93,8 @@ metrics.json
 
 `stable` описывает значение, например 65 кг. `consistent` описывает регулярность, например три рабочих подхода каждую неделю. `volumeKg` - вспомогательное evidence, если число подходов или effort менялись. В program-scope observation evidence может содержать `exerciseId`, чтобы указать упражнение-источник; в остальных scope его не указывайте.
 
+Если метрики подтверждают plateau каждого существенного упражнения и общий plateau программы, создайте отдельное `performance_plateau` observation со `scope: exercise` для каждого упражнения и дополнительное observation со `scope: program`. Program observation MUST NOT содержать верхнеуровневый `exerciseId`; добавьте отдельное evidence с `exerciseId` для каждого упражнения, на котором основан общий вывод. Program observation не заменяет локальные observations.
+
 `performance_decline` требует минимум четыре сопоставимых последовательных выполнения с устойчивым ухудшением веса или повторений при сопоставимых подходах и effort. Не используйте его для одного-двух слабых выполнений, падения повторений сразу после повышения внешнего веса или меньшего volume из-за удаления подходов. Такой rep reset сам по себе не является и plateau.
 
 Короткая или разреженная история не подтверждает устойчивую progression, plateau или decline. В таком случае добавляйте `insufficient_history`; при редких измерениях массы добавляйте `measurement_sparsity`.
@@ -173,6 +175,7 @@ metrics.json
 - `schemaVersion` равно `"1.1"`.
 - Все enum-значения есть в schema.
 - Каждый `exercise` observation содержит `exerciseId`.
+- При program-wide plateau присутствуют отдельные локальные plateau observations и один program observation с exercise-specific evidence для каждого упражнения.
 - `fromWeek <= throughWeek`; evidence не выходит за интервал observation.
 - Каждый `basedOn` указывает на существующий ID.
 - Факт не выдаётся за причину.

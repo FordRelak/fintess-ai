@@ -12,5 +12,5 @@
 ## 3. Проверка
 
 - [x] 3.1 Запустить `EvaluateAll.cs` и убедиться, что он последовательно создаёт outputs всех scenarios без post-evaluation проверки.
-- [ ] 3.2 Запустить `dotnet run eval/scripts/VerifyAll.cs` и `dotnet run eval/scripts/VerifyContracts.cs`.
+- [x] 3.2 Запустить `dotnet run eval/scripts/VerifyAll.cs` и `dotnet run eval/scripts/VerifyContracts.cs`.
 - [x] 3.3 Выполнить `openspec validate add-evaluate-all-runner --strict --no-interactive`.

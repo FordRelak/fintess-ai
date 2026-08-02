@@ -2,6 +2,105 @@
   "schemaVersion": "1.1",
   "observations": [
     {
+      "id": "obs-barbell-squat-plateau",
+      "type": "performance_plateau",
+      "scope": "exercise",
+      "exerciseId": "barbell-squat",
+      "onsetWeek": 1,
+      "throughWeek": 6,
+      "confidence": "high",
+      "evidence": [
+        {
+          "metric": "maxWeightKg",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "stable",
+          "details": "Максимальный рабочий вес приседа оставался 100 кг на каждой из шести недель."
+        },
+        {
+          "metric": "totalReps",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "stable",
+          "details": "Суммарно выполнялось 23 повторения на каждой неделе."
+        },
+        {
+          "metric": "workingSetCount",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "consistent",
+          "details": "На каждой неделе выполнялось по 3 рабочих подхода."
+        }
+      ],
+      "summary": "В приседе шесть последовательных выполнений сохранялись на 100 кг, 23 повторениях и 3 рабочих подходах без улучшения результата."
+    },
+    {
+      "id": "obs-barbell-bench-press-plateau",
+      "type": "performance_plateau",
+      "scope": "exercise",
+      "exerciseId": "barbell-bench-press",
+      "onsetWeek": 1,
+      "throughWeek": 6,
+      "confidence": "high",
+      "evidence": [
+        {
+          "metric": "maxWeightKg",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "stable",
+          "details": "Максимальный рабочий вес жима лежа оставался 80 кг на каждой из шести недель."
+        },
+        {
+          "metric": "totalReps",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "stable",
+          "details": "Суммарно выполнялось 23 повторения на каждой неделе."
+        },
+        {
+          "metric": "workingSetCount",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "consistent",
+          "details": "На каждой неделе выполнялось по 3 рабочих подхода."
+        }
+      ],
+      "summary": "В жиме лежа шесть последовательных выполнений сохранялись на 80 кг, 23 повторениях и 3 рабочих подходах без улучшения результата."
+    },
+    {
+      "id": "obs-barbell-row-plateau",
+      "type": "performance_plateau",
+      "scope": "exercise",
+      "exerciseId": "barbell-row",
+      "onsetWeek": 1,
+      "throughWeek": 6,
+      "confidence": "high",
+      "evidence": [
+        {
+          "metric": "maxWeightKg",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "stable",
+          "details": "Максимальный рабочий вес тяги штанги оставался 70 кг на каждой из шести недель."
+        },
+        {
+          "metric": "totalReps",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "stable",
+          "details": "Суммарно выполнялось 23 повторения на каждой неделе."
+        },
+        {
+          "metric": "workingSetCount",
+          "fromWeek": 1,
+          "throughWeek": 6,
+          "trend": "consistent",
+          "details": "На каждой неделе выполнялось по 3 рабочих подхода."
+        }
+      ],
+      "summary": "В тяге штанги шесть последовательных выполнений сохранялись на 70 кг, 23 повторениях и 3 рабочих подходах без улучшения результата."
+    },
+    {
       "id": "obs-program-wide-plateau",
       "type": "performance_plateau",
       "scope": "program",
@@ -14,35 +113,27 @@
           "fromWeek": 1,
           "throughWeek": 6,
           "trend": "stable",
-          "details": "barbell-squat: 100 кг, barbell-bench-press: 80 кг, barbell-row: 70 кг на каждой неделе.",
+          "details": "Максимальный рабочий вес оставался неизменным во всех шести неделях.",
           "exerciseId": "barbell-squat"
         },
         {
-          "metric": "totalReps",
+          "metric": "maxWeightKg",
           "fromWeek": 1,
           "throughWeek": 6,
           "trend": "stable",
-          "details": "Все три упражнения сохраняли 23 повторения на каждой неделе.",
+          "details": "Максимальный рабочий вес оставался неизменным во всех шести неделях.",
           "exerciseId": "barbell-bench-press"
         },
         {
-          "metric": "workingSetCount",
+          "metric": "maxWeightKg",
           "fromWeek": 1,
           "throughWeek": 6,
-          "trend": "consistent",
-          "details": "Каждое упражнение выполнялось по 3 рабочих подхода на каждой неделе.",
+          "trend": "stable",
+          "details": "Максимальный рабочий вес оставался неизменным во всех шести неделях.",
           "exerciseId": "barbell-row"
-        },
-        {
-          "metric": "effort",
-          "fromWeek": 1,
-          "throughWeek": 6,
-          "trend": "consistent",
-          "details": "Структура усилия оставалась одинаковой: два подхода high и один maximum для каждого упражнения.",
-          "exerciseId": "barbell-squat"
         }
       ],
-      "summary": "В трёх упражнениях программы шесть последовательных выполнений проходили с неизменными весом, повторениями, объёмом, числом подходов и усилием; общепрограммная прогрессия не наблюдается."
+      "summary": "В приседе, жиме лежа и тяге штанги шесть последовательных выполнений сохранялись без роста веса, повторений или числа рабочих подходов."
     }
   ],
   "hypotheses": [
@@ -51,20 +142,26 @@
       "type": "insufficient_evidence",
       "confidence": "high",
       "basedOn": [
+        "obs-barbell-squat-plateau",
+        "obs-barbell-bench-press-plateau",
+        "obs-barbell-row-plateau",
         "obs-program-wide-plateau"
       ],
-      "reasoning": "Метрики подтверждают общепрограммное плато, но не содержат данных, позволяющих определить его причину."
+      "reasoning": "Метрики подтверждают локальное и общепрограммное плато, но не содержат данных, позволяющих определить его причину."
     }
   ],
   "recommendations": [
     {
       "type": "adjust_progression",
       "basedOn": [
+        "obs-barbell-squat-plateau",
+        "obs-barbell-bench-press-plateau",
+        "obs-barbell-row-plateau",
         "obs-program-wide-plateau",
         "hyp-plateau-cause-uncertain"
       ],
       "priority": "high",
-      "action": "Пересмотреть критерии и шаг прогрессии для всех трёх упражнений и проверить изменение результата в следующих нескольких выполнениях; не менять другие параметры без новых данных."
+      "action": "Пересмотреть критерии и шаг прогрессии для трех упражнений и проверить изменение результата в следующих нескольких выполнениях; не считать восстановление, питание или технику подтвержденной причиной без новых данных."
     }
   ],
   "limitations": [
@@ -79,14 +176,6 @@
     {
       "type": "missing_technique_data",
       "impact": "Нет данных о технике, амплитуде движения или видеозаписях, поэтому технические ограничения не оценены."
-    },
-    {
-      "type": "missing_pain_or_injury_data",
-      "impact": "Нет данных о боли или травмах, поэтому их возможное влияние на результат не оценено."
-    },
-    {
-      "type": "measurement_sparsity",
-      "impact": "Масса тела измерялась только один раз в неделю, поэтому тонкие изменения тренда массы не различимы."
     }
   ]
 }

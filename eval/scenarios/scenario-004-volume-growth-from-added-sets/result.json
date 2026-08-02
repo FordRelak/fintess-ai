@@ -12,17 +12,17 @@
       "evidence": [
         {
           "metric": "workingSetCount",
-          "fromWeek": 1,
+          "fromWeek": 3,
           "throughWeek": 5,
-          "trend": "increasing",
-          "details": "Число рабочих подходов выросло с 2 в неделях 1-2 до 3 в неделях 3-5, тогда как programContext задаёт максимум 2 подхода."
+          "trend": "stable",
+          "details": "В неделях 3-5 число рабочих подходов оставалось равным 3, тогда как programContext задаёт максимум 2 подхода."
         },
         {
           "metric": "volumeKg",
-          "fromWeek": 1,
+          "fromWeek": 3,
           "throughWeek": 5,
-          "trend": "increasing",
-          "details": "Объём вырос с 400 кг в неделях 1-2 до 600 кг в неделях 3-5 вслед за добавлением подхода."
+          "trend": "stable",
+          "details": "В неделях 3-5 объём оставался равным 600 кг после добавления третьего подхода."
         }
       ],
       "summary": "В cable-fly три последовательных выполнения содержали 3 рабочих подхода вместо заданного диапазона 2 подхода; рост объёма обусловлен только добавленным подходом."
@@ -93,7 +93,7 @@
   "hypotheses": [],
   "recommendations": [
     {
-      "type": "adjust_progression",
+      "type": "modify_volume",
       "exerciseId": "cable-fly",
       "basedOn": [
         "obs-cable-fly-added-sets",

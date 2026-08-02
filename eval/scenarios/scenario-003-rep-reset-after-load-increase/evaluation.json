@@ -13,7 +13,7 @@
       "id": "required-observation-01",
       "category": "required_observation",
       "status": "passed",
-      "message": "Matched required observation with id \u0027obs-cable-row-progression\u0027."
+      "message": "Matched required observation with id \u0027obs-cable-row-load-progression\u0027."
     },
     {
       "id": "forbidden-observation-01",

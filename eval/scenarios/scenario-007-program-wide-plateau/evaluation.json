@@ -1,43 +1,43 @@
 {
   "schemaVersion": "1.0",
   "scenarioId": "scenario-007-program-wide-plateau",
-  "status": "failed",
+  "status": "manual_review",
   "summary": {
     "total": 11,
-    "passed": 5,
-    "failed": 4,
+    "passed": 9,
+    "failed": 0,
     "manualReview": 2
   },
   "checks": [
     {
       "id": "required-observation-01",
       "category": "required_observation",
-      "status": "failed",
-      "message": "Missing required observation: type=performance_plateau, scope=exercise, exerciseId=barbell-squat."
+      "status": "passed",
+      "message": "Matched required observation with id \u0027obs-barbell-squat-plateau\u0027."
     },
     {
       "id": "required-observation-02",
       "category": "required_observation",
-      "status": "failed",
-      "message": "Missing required observation: type=performance_plateau, scope=exercise, exerciseId=barbell-bench-press."
+      "status": "passed",
+      "message": "Matched required observation with id \u0027obs-barbell-bench-press-plateau\u0027."
     },
     {
       "id": "required-observation-03",
       "category": "required_observation",
-      "status": "failed",
-      "message": "Missing required observation: type=performance_plateau, scope=exercise, exerciseId=barbell-row."
+      "status": "passed",
+      "message": "Matched required observation with id \u0027obs-barbell-row-plateau\u0027."
     },
     {
       "id": "required-observation-04",
       "category": "required_observation",
-      "status": "failed",
-      "message": "Missing required observation: type=performance_plateau, scope=program."
+      "status": "passed",
+      "message": "Matched required observation with id \u0027obs-program-wide-plateau\u0027."
     },
     {
       "id": "hypothesis-policy-01",
       "category": "hypothesis_policy",
       "status": "passed",
-      "message": "Hypothesis \u0027hyp-cause-insufficient-evidence\u0027 is allowed at confidence \u0027high\u0027."
+      "message": "Hypothesis \u0027hyp-plateau-cause-uncertain\u0027 is allowed at confidence \u0027high\u0027."
     },
     {
       "id": "required-recommendation-01",
