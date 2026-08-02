@@ -1,15 +1,4 @@
-## Purpose
-
-Изолированные и диагностируемые запуски harness с сохранением provenance и failed artifacts.
-
-## Requirements
-
-### Requirement: Уникальная директория запуска
-Harness runner SHALL до запуска model subprocesses создать отдельный directory `.harness-runs/<skill-id>/<run-id>`, где `<skill-id>` является ID проверяемого domain skill, а `<run-id>` состоит из UTC timestamp с точностью до секунды и короткого случайного suffix. Создание SHALL исключать повторное использование существующего directory.
-
-#### Scenario: Два запуска начинаются одновременно
-- **WHEN** два процесса запускают harness для одного domain skill в одну секунду
-- **THEN** каждый процесс использует собственный run directory и не перезаписывает файлы другого процесса
+## MODIFIED Requirements
 
 ### Requirement: Изолированные scenario artifacts
 Harness runner SHALL для каждого обнаруженного source scenario создать `<run-directory>/scenarios/<scenario-id>`, сгенерировать туда `metrics.json` из raw fixtures, создать `result.json` через проверяемый domain skill и записать `evaluation.json` через evaluator. Source scenario SHALL содержать raw fixtures, `ground-truth.json` и README, но SHALL NOT содержать `metrics.json`, `result.json` или `evaluation.json`.
@@ -21,21 +10,6 @@ Harness runner SHALL для каждого обнаруженного source sce
 #### Scenario: Запуск прерывается после части scenarios
 - **WHEN** process завершается до обработки всех scenarios
 - **THEN** уже созданный run directory и записанные в него inputs и outputs сохраняются для диагностики
-
-### Requirement: Метаданные происхождения запуска
-Harness runner SHALL создать `<run-directory>/run.json` до запуска model subprocesses. Документ SHALL содержать `runId`, `skillId`, repository-relative `skillPath`, UTC `startedAt`, точный requested `model`, `repositoryCommit`, `repositoryDirty` и `repositoryState`.
-
-#### Scenario: Запуск из clean repository
-- **WHEN** repository имеет `HEAD` и рабочее дерево clean
-- **THEN** `repositoryCommit` содержит фактический commit hash, `repositoryDirty` равен `false`, а `repositoryState` равен `clean`
-
-#### Scenario: Запуск из dirty repository
-- **WHEN** repository имеет `HEAD` и рабочее дерево содержит изменения
-- **THEN** `repositoryCommit` содержит фактический commit hash, `repositoryDirty` равен `true`, а `repositoryState` равен `dirty`
-
-#### Scenario: Commit отсутствует или Git недоступен
-- **WHEN** repository не имеет commit либо Git metadata нельзя прочитать
-- **THEN** `repositoryCommit` равен JSON `null`, а `repositoryState` явно сообщает `unborn` или `unavailable`
 
 ### Requirement: Неизменность scenario source tree
 Harness runner SHALL использовать `eval/scenarios` только как read-only source raw fixtures, acceptance rules и документацию и SHALL NOT создавать, изменять или удалять файлы внутри него. Repository SHALL игнорировать `/.harness-runs/` через `.gitignore`.

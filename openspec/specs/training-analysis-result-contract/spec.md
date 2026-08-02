@@ -5,11 +5,11 @@
 ## Requirements
 
 ### Requirement: Контракт результата версии 1.1
-Repository SHALL определять `eval/schemas/result-schema.json` как `schemaVersion` `1.1`. Analysis result fixtures, проверяемые этим контрактом, MUST объявлять `schemaVersion` `1.1`; raw inputs и `metrics.json` SHALL сохранять независимый version contract.
+Repository SHALL определять `eval/schemas/result-schema.json` как контракт `schemaVersion` `1.1`. Каждый run-local `result.json`, создаваемый domain skill и проверяемый evaluator, MUST объявлять `schemaVersion` `1.1`; raw inputs и `metrics.json` SHALL сохранять независимый version contract. Source scenarios SHALL NOT хранить result fixtures.
 
-#### Scenario: Result fixture использует версию 1.1
-- **WHEN** evaluator читает scenario `result.json` по обновлённому контракту
-- **THEN** он принимает fixture только когда `schemaVersion` равен `1.1`
+#### Scenario: Run-local result использует версию 1.1
+- **WHEN** evaluator читает generated `result.json` из harness run
+- **THEN** он принимает result только когда `schemaVersion` равен `1.1`
 
 ### Requirement: Наблюдение performance decline
 Result contract SHALL разрешать observation type `performance_decline` для устойчивого ухудшения сопоставимого результата на уровне упражнения. Decline observation MUST использовать scope `exercise` и MUST содержать его `exerciseId`.

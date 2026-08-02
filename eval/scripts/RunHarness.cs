@@ -9,9 +9,7 @@ try
     var options = CliOptions.Parse(args);
     if (options.ShowHelp)
     {
-        Console.WriteLine(
-            "Usage: dotnet run RunHarness.cs -- --skill-id <id> --skill-path <path> --model <model> " +
-            "[--opencode <command>] [--result-source <scenario-root>] [--evaluate-script <path>] [--contract-script <path>]");
+        Console.WriteLine("Usage: dotnet run RunHarness.cs -- --skill-id <id> --skill-path <path> --model <model>");
         return 0;
     }
 
@@ -43,7 +41,7 @@ try
             continue;
         }
 
-        var modelExit = RunModel(options, sourceScenario, runScenario, runMetrics);
+        var modelExit = RunModel(options, runScenario, runMetrics);
         if (modelExit != 0 || !File.Exists(Path.Combine(runScenario, "result.json")))
         {
             Console.Error.WriteLine($"{scenarioName}: model run failed or result.json is missing (exit {modelExit}).");
@@ -51,17 +49,11 @@ try
             continue;
         }
 
-        var evaluationExit = RunEvaluation(root, options, sourceScenario, runScenario);
+        var evaluationExit = RunEvaluation(root, sourceScenario, runScenario);
         if (evaluationExit != 0)
         {
             failed = true;
         }
-    }
-
-    var contractExit = RunContracts(root, options, run.Root);
-    if (contractExit != 0)
-    {
-        failed = true;
     }
 
     Console.WriteLine($"Harness run preserved at {run.Root}");
@@ -124,17 +116,9 @@ static RunMetadata CreateRun(string root, CliOptions options)
     return new RunMetadata(runId, runRoot);
 }
 
-static int RunModel(CliOptions options, string sourceScenario, string workingDirectory, string metricsPath)
+static int RunModel(CliOptions options, string workingDirectory, string metricsPath)
 {
-    if (options.ResultSource is not null)
-    {
-        var sourceResult = Path.Combine(options.ResultSource, Path.GetFileName(sourceScenario), "result.json");
-        if (!File.Exists(sourceResult)) return 1;
-        File.Copy(sourceResult, Path.Combine(workingDirectory, "result.json"));
-        return 0;
-    }
-
-    var start = new ProcessStartInfo(options.OpenCodeCommand)
+    var start = new ProcessStartInfo("opencode")
     {
         UseShellExecute = false,
         RedirectStandardOutput = true,
@@ -193,14 +177,14 @@ static int RunNormalization(string root, string sourceScenario, string outputPat
     return process.ExitCode;
 }
 
-static int RunEvaluation(string root, CliOptions options, string sourceScenario, string runScenario)
+static int RunEvaluation(string root, string sourceScenario, string runScenario)
 {
     var start = new ProcessStartInfo("dotnet") { UseShellExecute = false };
     start.ArgumentList.Add("run");
     start.ArgumentList.Add("--no-cache");
     start.ArgumentList.Add("--artifacts-path");
     start.ArgumentList.Add(Path.Combine(runScenario, ".dotnet-evaluate"));
-    start.ArgumentList.Add(Path.GetFullPath(options.EvaluateScript));
+    start.ArgumentList.Add(Path.Combine(root, "eval", "scripts", "Evaluate.cs"));
     start.ArgumentList.Add("--");
     start.ArgumentList.Add("--scenario");
     start.ArgumentList.Add(runScenario);
@@ -223,23 +207,6 @@ static int RunEvaluation(string root, CliOptions options, string sourceScenario,
         return 0;
     }
 
-    return process.ExitCode;
-}
-
-static int RunContracts(string root, CliOptions options, string runRoot)
-{
-    var start = new ProcessStartInfo("dotnet") { UseShellExecute = false };
-    start.ArgumentList.Add("run");
-    start.ArgumentList.Add("--no-cache");
-    start.ArgumentList.Add("--artifacts-path");
-    start.ArgumentList.Add(Path.Combine(runRoot, ".dotnet-contracts"));
-    start.ArgumentList.Add(Path.GetFullPath(options.ContractScript));
-    start.ArgumentList.Add("--");
-    start.ArgumentList.Add("--run");
-    start.ArgumentList.Add(runRoot);
-    using var process = Process.Start(start)
-        ?? throw new InvalidOperationException("Could not start contract checker.");
-    process.WaitForExit();
     return process.ExitCode;
 }
 
@@ -311,10 +278,6 @@ sealed class CliOptions
     public string SkillId { get; private set; } = string.Empty;
     public string SkillPath { get; private set; } = string.Empty;
     public string Model { get; private set; } = string.Empty;
-    public string OpenCodeCommand { get; private set; } = "opencode";
-    public string? ResultSource { get; private set; }
-    public string EvaluateScript { get; private set; } = "eval/scripts/Evaluate.cs";
-    public string ContractScript { get; private set; } = "eval/scripts/VerifyContracts.cs";
     public bool ShowHelp { get; private set; }
 
     public static CliOptions Parse(string[] args)
@@ -329,10 +292,6 @@ sealed class CliOptions
                 case "--skill-id": result.SkillId = Next(args, ref index, argument); break;
                 case "--skill-path": result.SkillPath = Next(args, ref index, argument); break;
                 case "--model": result.Model = Next(args, ref index, argument); break;
-                case "--opencode": result.OpenCodeCommand = Next(args, ref index, argument); break;
-                case "--result-source": result.ResultSource = Path.GetFullPath(Next(args, ref index, argument)); break;
-                case "--evaluate-script": result.EvaluateScript = Next(args, ref index, argument); break;
-                case "--contract-script": result.ContractScript = Next(args, ref index, argument); break;
                 default: throw new ArgumentException($"Unknown argument '{argument}'. Use --help for usage.");
             }
         }

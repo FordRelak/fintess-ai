@@ -21,7 +21,7 @@
 - Ограничить причинные выводы: доступных данных недостаточно, чтобы подтвердить усталость, восстановление, питание, технику, боль или травму как причину плато.
 - Рекомендовать пересмотреть progression только для `smith-incline-bench-press`, сохранив сопоставимые рабочие подходы и effort. Для остальных прогрессирующих упражнений сохранить текущий план.
 
-`result.json` показывает один валидный результат. Допустимы другие формулировки и структура аргументации, если они проходят automated acceptance rules из `ground-truth.json`.
+Run-local `result.json` может использовать разные формулировки и структуру аргументации, если проходит automated acceptance rules из `ground-truth.json`.
 
 ## Invalid claims
 
@@ -41,9 +41,9 @@
 | `workouts.json` | Исходные записи 16 тренировок. |
 | `measurements.json` | Исходные измерения веса тела. |
 | `metrics.json` | Run-local метрики, созданные normalizer из input JSON. В scenario не хранится. |
-| `result.json` | Пример одного валидного ответа анализатора. Не единственный допустимый ответ. |
+| `result.json` | Run-local результат domain skill. В scenario не хранится. |
 | `ground-truth.json` | Источник точных automated acceptance rules и matcher-правил. |
-| `evaluation.json` | Run-local результат evaluator для `result.json`. В scenario не хранится. |
+| `evaluation.json` | Run-local результат evaluator. В scenario не хранится. |
 
 ## Verification
 
@@ -51,10 +51,9 @@
 
 ```bash
 dotnet run eval/scripts/RunHarness.cs -- --skill-id analyze-training-progress --skill-path .opencode/skills/analyze-training-progress --model <model-name>
-dotnet run eval/scripts/VerifyAll.cs
 ```
 
-`RunHarness.cs` генерирует metrics и evaluation в `.harness-runs/` и не изменяет scenario inputs. `VerifyAll.cs` проверяет эту генерацию во временных путях.
+`RunHarness.cs` генерирует metrics, result и evaluation в `.harness-runs/` и не изменяет scenario inputs.
 
 ## Success criteria
 

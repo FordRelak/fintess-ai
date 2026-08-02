@@ -1,15 +1,4 @@
-## Purpose
-
-Самодостаточная документация evaluation scenarios и разграничение ролей их артефактов.
-
-## Requirements
-
-### Requirement: Единый шаблон README scenario
-Repository SHALL хранить общий шаблон в `eval/scenarios/README.template.md`. Шаблон SHALL содержать разделы для цели проверки, сюжета, данных, ожидаемого поведения, недопустимых утверждений, порядка проверки, критерия успеха и ролей файлов.
-
-#### Scenario: Создание документации нового scenario
-- **WHEN** в `eval/scenarios/` добавляется новый scenario
-- **THEN** его README создаётся по `eval/scenarios/README.template.md` и содержит все обязательные разделы шаблона
+## MODIFIED Requirements
 
 ### Requirement: README описывает контракт поведения
 README scenario SHALL описывать проверяемые наблюдения, границы выводов и ожидаемые действия анализатора. README SHALL описывать несколько допустимых вариантов run-local `result.json` и SHALL NOT дублировать точные matcher-правила из `ground-truth.json`.

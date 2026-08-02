@@ -30,7 +30,7 @@ Leg press записан четыре раза за 12 недель. Нагру�
 | `workouts.json` | Исходные записи тренировок. |
 | `measurements.json` | Исходные измерения веса тела. |
 | `metrics.json` | Run-local метрики, созданные из исходных данных. В scenario не хранится. |
-| `result.json` | Один валидный результат анализа. |
+| `result.json` | Run-local результат domain skill. В scenario не хранится. |
 | `ground-truth.json` | Automated acceptance rules. |
 | `evaluation.json` | Run-local результат evaluator. В scenario не хранится. |
 
@@ -38,7 +38,6 @@ Leg press записан четыре раза за 12 недель. Нагру�
 
 ```bash
 dotnet run eval/scripts/RunHarness.cs -- --skill-id analyze-training-progress --skill-path .opencode/skills/analyze-training-progress --model <model-name>
-dotnet run eval/scripts/VerifyAll.cs
 ```
 
 ## Success criteria

@@ -30,7 +30,7 @@
 | `workouts.json` | Исходные записи тренировок. |
 | `measurements.json` | Исходные измерения веса тела. |
 | `metrics.json` | Run-local метрики, создаваемые из исходных данных. В scenario не хранится. |
-| `result.json` | Пример одного валидного результата анализа, не единственный допустимый ответ. |
+| `result.json` | Run-local результат domain skill. В scenario не хранится. |
 | `ground-truth.json` | Источник точных automated acceptance rules. |
 | `evaluation.json` | Run-local результат evaluator. В scenario не хранится. |
 
@@ -40,9 +40,8 @@
 
 ```bash
 dotnet run eval/scripts/RunHarness.cs -- --skill-id analyze-training-progress --skill-path .opencode/skills/analyze-training-progress --model <model-name>
-dotnet run eval/scripts/VerifyAll.cs
 ```
 
 ## Success criteria
 
-<Какие observations, ограничения и действия должны пройти automated checks. `RunHarness.cs` сохраняет каждый run отдельно, не изменяет scenario inputs и возвращает non-zero при failed scenario или contract check. `manual_review` без `failed` checks означает, что automated checks пройдены и требуется semantic review. `VerifyAll.cs` проверяет run-local generation во временных путях.>
+<Какие observations, ограничения и действия должны пройти automated checks. `RunHarness.cs` сохраняет каждый run отдельно, не изменяет scenario inputs и возвращает non-zero при failed scenario или evaluation. `manual_review` без `failed` checks означает, что automated checks пройдены и требуется semantic review.>

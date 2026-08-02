@@ -27,7 +27,7 @@ dotnet run eval/scripts/RunHarness.cs -- \
   --model <model-name>
 ```
 
-Результаты сохраняются в `.harness-runs/<skill-id>/<run-id>`. Команда не изменяет `eval/scenarios`, сохраняет failed runs для диагностики и возвращает non-zero при failed scenario или contract check.
+Результаты сохраняются в `.harness-runs/<skill-id>/<run-id>`. Команда не изменяет `eval/scenarios`, сохраняет failed runs для диагностики и возвращает non-zero при failed scenario или evaluation.
 
 ## Направление развития
 

@@ -1,8 +1,4 @@
-## Purpose
-
-Изолированный запуск model generation и evaluator для всех scenarios.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Массовый запуск evaluator
 Repository SHALL предоставлять один верхнеуровневый file-based C# runner, который при запуске из repository root находит непосредственные каталоги `scenario-*` в `eval/scenarios`, сортирует их ordinal-лексикографически, создаёт изолированный harness run и запускает normalizer, model generation и `Evaluate.cs` ровно один раз для каждого scenario. Runner SHALL использовать установленные команды `opencode` и `eval/scripts/Evaluate.cs` без CLI overrides и SHALL NOT копировать committed analysis results.

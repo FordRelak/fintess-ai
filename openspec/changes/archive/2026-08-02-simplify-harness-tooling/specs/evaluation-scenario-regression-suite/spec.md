@@ -1,8 +1,4 @@
-## Purpose
-
-Изолированные evaluation scenarios и проверка generated outputs.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Набор граничных сценариев
 Repository SHALL содержать scenarios от `scenario-002-insufficient-history` до `scenario-008-sustained-performance-decline`. Каждый source scenario SHALL содержать raw fixtures, `ground-truth.json` и README и SHALL NOT содержать generated `metrics.json`, `result.json` или `evaluation.json`.
